@@ -2,806 +2,1099 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Dr. Chamanthi's Smile Restoration Portal ❀</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Dr. Chamanthi's Interactive Smile & Apology Lab 🦷🌼</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
       --pink: #ff4d79;
-      --pink-dark: #c9184a;
-      --pink-soft: #ffe5ec;
       --mint: #00b4d8;
-      --mint-soft: #e0fbfc;
-      --yellow: #ffb703;
+      --chamanthi: #ffb703;
       --dark: #1e293b;
-      --card: #ffffff;
     }
     * {
       box-sizing: border-box;
-      margin: 0;
-      padding: 0;
+      -webkit-tap-highlight-color: transparent;
       user-select: none;
     }
     body {
-      font-family: 'Inter', Arial, sans-serif;
-      background: linear-gradient(135deg, #fff0f3 0%, #e0fbfc 50%, #fff9db 100%);
+      font-family: 'Quicksand', sans-serif;
+      background: radial-gradient(circle at top left, #fff0f5 0%, #e0f7fa 50%, #fffbeb 100%);
       color: var(--dark);
-      min-height: 100vh;
-      padding: 16px;
       overflow-x: hidden;
+      min-height: 100vh;
+    }
+    h1, h2, h3, .font-display {
+      font-family: 'Fredoka', sans-serif;
     }
 
-    /* Floating Background Emojis */
-    .floating-bg {
+    /* Floating Background Petals & Teeth */
+    .floater {
       position: fixed;
-      inset: 0;
       pointer-events: none;
       z-index: 0;
-      overflow: hidden;
-    }
-    .floater {
-      position: absolute;
-      bottom: -50px;
-      font-size: 1.5rem;
       animation: floatUp linear forwards;
-      opacity: 0.75;
     }
     @keyframes floatUp {
-      0% { transform: translateY(0) rotate(0deg); opacity: 0.85; }
-      100% { transform: translateY(-110vh) rotate(360deg); opacity: 0; }
+      0% { transform: translateY(105vh) rotate(0deg) scale(0.8); opacity: 0.85; }
+      100% { transform: translateY(-15vh) rotate(360deg) scale(1.15); opacity: 0; }
     }
 
-    /* Main Container */
-    .main-wrapper {
-      max-width: 900px;
-      margin: 15px auto;
-      background: rgba(255, 255, 255, 0.96);
+    /* Toothbrush Scratch Canvas Container */
+    .scratch-container {
+      position: relative;
+      width: 100%;
+      max-width: 520px;
+      height: 320px;
+      margin: 0 auto;
       border-radius: 28px;
-      border: 3px solid #ffb3c6;
-      box-shadow: 0 20px 50px rgba(255, 77, 121, 0.16);
       overflow: hidden;
-      position: relative;
-      z-index: 2;
+      box-shadow: 0 15px 35px rgba(255, 77, 121, 0.18);
+      border: 4px solid #ffc2d1;
+      background: linear-gradient(135deg, #fff9fb 0%, #e0fbfc 100%);
+      touch-action: none;
+      cursor: crosshair;
     }
-
-    /* Hero Header */
-    .header {
-      background: linear-gradient(135deg, #ff4d79 0%, #ff758f 100%);
-      color: white;
-      padding: 32px 20px;
-      text-align: center;
-    }
-    .mascot {
-      font-size: 3.4rem;
-      display: inline-block;
-      animation: gentleBounce 2s infinite ease-in-out;
-    }
-    @keyframes gentleBounce {
-      0%, 100% { transform: translateY(0) rotate(-4deg); }
-      50% { transform: translateY(-10px) rotate(4deg); }
-    }
-    .header h1 {
-      font-size: 1.85rem;
-      font-weight: 800;
-      margin: 8px 0 6px;
-      letter-spacing: -0.5px;
-    }
-    .header p {
-      font-size: 0.98rem;
-      opacity: 0.95;
-    }
-
-    /* Sticky Smile Meter Bar */
-    .meter-bar-wrap {
-      background: #fff9fb;
-      padding: 14px 24px;
-      border-bottom: 2px solid #ffe5ec;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 14px;
-      flex-wrap: wrap;
-      position: sticky;
+    #scratch-canvas {
+      position: absolute;
       top: 0;
-      z-index: 20;
-    }
-    .meter-label {
-      font-weight: 700;
-      font-size: 0.95rem;
-      color: var(--pink-dark);
-    }
-    .meter-track {
-      flex: 1;
-      min-width: 180px;
-      height: 16px;
-      background: #e2e8f0;
-      border-radius: 50px;
-      overflow: hidden;
-    }
-    .meter-fill {
+      left: 0;
+      width: 100%;
       height: 100%;
-      width: 12%;
-      background: linear-gradient(90deg, #ff4d79, #00b4d8);
-      border-radius: 50px;
-      transition: width 0.35s ease;
+      z-index: 10;
     }
-    .read-counter {
-      font-size: 0.85rem;
-      font-weight: 700;
-      background: var(--mint-soft);
-      color: #0077b6;
-      padding: 5px 12px;
-      border-radius: 20px;
+    .foam-bubble {
+      position: absolute;
+      pointer-events: none;
+      border-radius: 50%;
+      background: radial-gradient(circle at 30% 30%, #ffffff, #caf0f8);
+      box-shadow: 0 2px 6px rgba(0, 180, 216, 0.3);
+      z-index: 20;
+      animation: popBubble 0.7s ease-out forwards;
     }
-
-    /* Section Styling */
-    .section {
-      padding: 24px;
-      border-bottom: 2px dashed #ffd6e0;
-    }
-    .section-title {
-      font-size: 1.2rem;
-      font-weight: 800;
-      color: var(--pink-dark);
-      text-align: center;
-      margin-bottom: 6px;
-    }
-    .section-sub {
-      text-align: center;
-      font-size: 0.9rem;
-      color: #64748b;
-      margin-bottom: 18px;
+    @keyframes popBubble {
+      0% { transform: scale(0.4); opacity: 1; }
+      80% { transform: scale(1.3); opacity: 0.9; }
+      100% { transform: scale(1.6); opacity: 0; }
     }
 
-    /* Stage 1: Scrub Away Bad Words Mini-Game */
-    .plaque-zone {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      background: #f8fafc;
-      padding: 18px;
-      border-radius: 20px;
-      border: 2px solid #e2e8f0;
-    }
-    .plaque-spot {
-      background: #fef08a;
-      border: 2px dashed #eab308;
-      color: #854d0e;
-      padding: 10px 16px;
-      border-radius: 50px;
-      font-size: 0.88rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: all 0.25s;
-    }
-    .plaque-spot:hover {
-      transform: scale(1.05);
-    }
-    .plaque-spot.cleaned {
-      background: #d8f3dc;
-      border: 2px solid #52b788;
-      color: #1b4332;
-      text-decoration: line-through;
-      opacity: 0.7;
-    }
-
-    /* Stage 2: Dental Clinic Tools */
-    .tools-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 14px;
-    }
-    .tool-btn {
-      background: white;
-      border: 2px solid #ff85a1;
-      padding: 9px 16px;
-      border-radius: 50px;
-      font-family: inherit;
-      font-size: 0.88rem;
-      font-weight: 700;
-      color: var(--dark);
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .tool-btn:hover {
-      background: var(--pink);
-      color: white;
-      transform: translateY(-2px);
-    }
-    #tool-feedback {
-      text-align: center;
-      margin-top: 12px;
-      font-size: 0.92rem;
-      font-weight: 700;
-      color: #0077b6;
-      min-height: 22px;
-    }
-
-    /* Stage 3: Spotlight Flipbook Card */
-    .flipbook-card {
-      background: linear-gradient(135deg, #fff0f3 0%, #ffffff 100%);
-      border: 2px solid #ffb3c6;
-      border-radius: 22px;
-      padding: 24px;
-      max-width: 620px;
-      margin: 0 auto 20px;
-      text-align: center;
-      box-shadow: 0 10px 25px rgba(255, 77, 121, 0.1);
-    }
-    .flip-badge {
-      display: inline-block;
-      background: var(--pink);
-      color: white;
-      font-size: 0.8rem;
-      font-weight: 700;
-      padding: 4px 14px;
-      border-radius: 20px;
-      margin-bottom: 12px;
-    }
-    .flip-text {
-      font-size: 1.18rem;
-      font-weight: 600;
-      line-height: 1.55;
-      color: #1e293b;
-      min-height: 85px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      padding: 10px;
-    }
-    .flip-controls {
-      display: flex;
-      gap: 10px;
-      justify-content: center;
-      margin-top: 14px;
-      flex-wrap: wrap;
-    }
-    .ctrl-btn {
-      background: var(--pink);
-      color: white;
-      border: none;
-      padding: 10px 18px;
-      border-radius: 50px;
-      font-family: inherit;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .ctrl-btn.alt {
-      background: #e2e8f0;
-      color: #1e293b;
-    }
-    .ctrl-btn:hover {
-      transform: scale(1.05);
-    }
-
-    /* Filter Tabs for All 100 Texts */
-    .filter-bar {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      justify-content: center;
-      margin-bottom: 14px;
-    }
-    .tab-btn {
-      background: var(--pink-soft);
-      color: var(--pink-dark);
-      border: none;
-      padding: 7px 14px;
-      border-radius: 20px;
-      font-family: inherit;
-      font-size: 0.82rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: 0.2s;
-    }
-    .tab-btn.active, .tab-btn:hover {
-      background: var(--pink);
-      color: white;
-    }
-
-    /* 100 Apology Grid */
-    .cards-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-      gap: 12px;
-      max-height: 480px;
-      overflow-y: auto;
-      padding: 6px;
-    }
-    .sorry-card {
-      background: white;
-      border: 2px solid #ffe5ec;
-      border-radius: 16px;
-      padding: 14px;
-      cursor: pointer;
-      transition: all 0.2s;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-    .sorry-card:hover {
-      border-color: var(--pink);
-      transform: translateY(-3px);
-      box-shadow: 0 6px 15px rgba(255, 77, 121, 0.12);
-    }
-    .sorry-card.read {
-      background: #f0fdfa;
-      border-color: #2dd4bf;
-    }
-    .sorry-meta {
-      display: flex;
-      justify-content: space-between;
-      font-size: 0.75rem;
-      font-weight: 800;
-      color: var(--pink);
-      margin-bottom: 6px;
-    }
-    .sorry-card.read .sorry-meta {
-      color: #0d9488;
-    }
-    .sorry-body {
-      font-size: 0.92rem;
-      line-height: 1.45;
-      color: #334155;
-      font-weight: 500;
-    }
-
-    /* Finale Section: Penalty Picker & Runaway Button */
-    .finale-section {
-      padding: 30px 20px 40px;
-      text-align: center;
-      background: linear-gradient(180deg, #ffffff 0%, #fff0f3 100%);
-    }
-    .penalty-select {
-      padding: 10px 16px;
-      border-radius: 12px;
-      border: 2px solid #ff85a1;
-      font-family: inherit;
-      font-size: 0.92rem;
-      font-weight: 600;
-      margin: 12px 0 20px;
-      background: white;
-      color: var(--dark);
-      max-width: 100%;
-    }
-    .action-arena {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      min-height: 80px;
+    /* X-Ray Scanner Styles */
+    .xray-stage {
       position: relative;
-    }
-    .forgive-btn {
-      background: linear-gradient(135deg, #00b4d8, #0077b6);
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      border-radius: 50px;
-      font-family: inherit;
-      font-size: 1.05rem;
-      font-weight: 800;
-      cursor: pointer;
-      box-shadow: 0 10px 24px rgba(0, 180, 216, 0.35);
-      transition: transform 0.2s;
-      z-index: 5;
-    }
-    .forgive-btn:hover {
-      transform: scale(1.07);
-    }
-    .angry-btn {
-      background: #94a3b8;
-      color: white;
-      border: none;
-      padding: 12px 22px;
-      border-radius: 50px;
-      font-family: inherit;
-      font-size: 0.9rem;
-      font-weight: 700;
-      cursor: pointer;
-      transition: transform 0.15s ease;
-    }
-    #certificate-box {
-      display: none;
-      margin: 22px auto 0;
+      width: 100%;
       max-width: 540px;
-      background: #ecfdf5;
-      border: 3px solid #10b981;
-      border-radius: 20px;
-      padding: 20px;
-      color: #065f46;
+      height: 340px;
+      margin: 0 auto;
+      border-radius: 28px;
+      overflow: hidden;
+      border: 4px solid #90e0ef;
+      background: #fff5f8;
+      touch-action: none;
+      cursor: ew-resize;
+      box-shadow: 0 15px 35px rgba(0, 180, 216, 0.15);
     }
-    .stamp-badge {
-      display: inline-block;
-      border: 3px double #e11d48;
-      color: #e11d48;
-      padding: 6px 16px;
+    .xray-underlay {
+      position: absolute;
+      inset: 0;
+      background: #091326;
+      color: #38bdf8;
+      z-index: 15;
+      clip-path: circle(85px at 50% 50%);
+      transition: clip-path 0.04s linear;
+      background-image: 
+        radial-gradient(rgba(56, 189, 248, 0.15) 1px, transparent 1px),
+        linear-gradient(to right, rgba(56, 189, 248, 0.06) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+    .xray-ring {
+      position: absolute;
+      width: 170px;
+      height: 170px;
+      border: 4px dashed #38bdf8;
+      border-radius: 50%;
+      box-shadow: 0 0 25px rgba(56, 189, 248, 0.6), inset 0 0 20px rgba(56, 189, 248, 0.35);
+      pointer-events: none;
+      z-index: 25;
+      transform: translate(-50%, -50%);
+      left: 50%;
+      top: 50%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      padding-bottom: 6px;
+    }
+
+    /* Capsule Gumball Machine Animation */
+    @keyframes shakeGlobe {
+      0%, 100% { transform: rotate(0deg); }
+      20% { transform: rotate(-6deg) scale(1.03); }
+      40% { transform: rotate(6deg) scale(1.03); }
+      60% { transform: rotate(-4deg); }
+      80% { transform: rotate(4deg); }
+    }
+    .shake-anim {
+      animation: shakeGlobe 0.55s ease-in-out;
+    }
+    @keyframes dropPill {
+      0% { transform: translateY(-60px) scale(0.3) rotate(-45deg); opacity: 0; }
+      60% { transform: translateY(8px) scale(1.1) rotate(10deg); opacity: 1; }
+      100% { transform: translateY(0) scale(1) rotate(0deg); opacity: 1; }
+    }
+    .pill-drop {
+      animation: dropPill 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+    }
+
+    /* Wax Stamp Animation */
+    @keyframes stampSlam {
+      0% { transform: scale(3.5) rotate(-25deg); opacity: 0; }
+      70% { transform: scale(0.9) rotate(6deg); opacity: 1; }
+      85% { transform: scale(1.06) rotate(-3deg); }
+      100% { transform: scale(1) rotate(-6deg); opacity: 1; }
+    }
+    .stamp-active {
+      animation: stampSlam 0.5s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+
+    /* Custom Scrollbar for 100 Word Cloud */
+    .custom-scroll::-webkit-scrollbar {
+      width: 7px;
+    }
+    .custom-scroll::-webkit-scrollbar-track {
+      background: #fff0f3;
       border-radius: 10px;
-      font-weight: 800;
-      transform: rotate(-4deg);
-      margin-bottom: 10px;
-      background: #fff1f2;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background: #ff85a1;
+      border-radius: 10px;
     }
   </style>
 </head>
-<body>
+<body class="pb-16">
 
-<div class="floating-bg" id="floating-bg"></div>
+  <!-- Background Floating Particles Container -->
+  <div id="particles-bg" class="fixed inset-0 pointer-events-none z-0"></div>
 
-<div class="main-wrapper">
-  <!-- Header -->
-  <div class="header">
-    <div class="mascot" id="mascot">☺︎❁</div>
-    <h1>Dr. Chamanthi's Apology Clinic</h1>
-    <p>100 Simple, Heartfelt Apologies to Bring Back My Favourite Dentist's Smile</p>
-  </div>
+  <!-- Sticky Top Clinic Header -->
+  <header class="sticky top-0 z-40 backdrop-blur-md bg-white/85 border-b-2 border-pink-200 shadow-sm">
+    <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
+      <div class="flex items-center gap-2.5">
+        <span class="text-3xl animate-bounce">🦷</span>
+        <div>
+          <h1 class="text-lg sm:text-xl font-bold text-pink-600 leading-tight">
+            Dr. Chamanthi's Smile Lab
+          </h1>
+          <p class="text-xs text-slate-500 font-semibold">
+            Interactive Dental Apology Experience 🌼
+          </p>
+        </div>
+      </div>
 
-  <!-- Sticky Smile Meter -->
-  <div class="meter-bar-wrap">
-    <div class="meter-label">☺︎ Chamanthi's Smile Meter: <span id="smile-pct">12%</span></div>
-    <div class="meter-track">
-      <div class="meter-fill" id="smile-fill"></div>
-    </div>
-    <div class="read-counter" id="read-counter">0 / 100 Read</div>
-  </div>
+      <!-- Smile Progress + Sound Toggle -->
+      <div class="flex items-center gap-3">
+        <div class="hidden sm:flex flex-col items-end">
+          <div class="text-xs font-bold text-slate-600">
+            Dr. Chamanthi's Mood: <span id="mood-pct" class="text-pink-600">20%</span>
+          </div>
+          <div class="w-32 h-2.5 bg-slate-200 rounded-full overflow-hidden mt-1">
+            <div id="mood-bar" class="h-full bg-gradient-to-r from-pink-500 via-amber-400 to-cyan-400 transition-all duration-500" style="width: 20%"></div>
+          </div>
+        </div>
 
-  <!-- Stage 1: Brush Away My Bad Habits & Use Dental Tools -->
-  <div class="section">
-    <div class="section-title">🪥 Step 1: Scrub Away My Silly Mistakes</div>
-    <div class="section-sub">Tap each yellow plaque bubble below to brush away my foolish behavior!</div>
-    
-    <div class="plaque-zone">
-      <div class="plaque-spot" onclick="scrubSpot(this)">❁ Speaking Without Thinking</div>
-      <div class="plaque-spot" onclick="scrubSpot(this)">❁ My Careless Tone</div>
-      <div class="plaque-spot" onclick="scrubSpot(this)">❁ Impatient Words</div>
-      <div class="plaque-spot" onclick="scrubSpot(this)">❁ Being Stubborn</div>
-      <div class="plaque-spot" onclick="scrubSpot(this)">❁ Making Dr. Chamanthi Frown</div>
-    </div>
-
-    <div class="tools-row">
-      <button class="tool-btn" onclick="runTool('suction')">❁ Suction My Dumb Words</button>
-      <button class="tool-btn" onclick="runTool('polish')">❁ Polish Your Smile</button>
-      <button class="tool-btn" onclick="runTool('flowers')">❁ Deliver Chamanthi Flowers</button>
-      <button class="tool-btn" onclick="runTool('icecream')">❁ Send Peace Ice Cream</button>
-    </div>
-    <div id="tool-feedback">Tap any bubble or dental button above to treat this foolish patient!</div>
-  </div>
-
-  <!-- Stage 2: 100 Normal, Understandable Sorry Texts (Flipbook + Grid) -->
-  <div class="section">
-    <div class="section-title">💌 Step 2: 100 Simple Ways to Say I'm Sorry</div>
-    <div class="section-sub">Flip through them one by one, or tap any card below to mark it as read!</div>
-
-    <!-- Spotlight Flipbook -->
-    <div class="flipbook-card">
-      <div class="flip-badge" id="flip-badge">Sorry Note #1 of 100</div>
-      <div class="flip-text" id="flip-text">Chamanthi, I am really sorry for the way I spoke to you earlier.</div>
-      <div class="flip-controls">
-        <button class="ctrl-btn alt" onclick="changeSlide(-1)">⬅️ Previous</button>
-        <button class="ctrl-btn" onclick="randomSlide()">❁ Surprise Me</button>
-        <button class="ctrl-btn" onclick="changeSlide(1)">Next Note ➡️</button>
+        <button id="sound-btn" onclick="toggleSound()" class="px-3 py-1.5 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-700 text-xs font-bold flex items-center gap-1 transition shadow-sm">
+          <span id="sound-icon">🔊</span> <span class="hidden sm:inline">Sound ON</span>
+        </button>
       </div>
     </div>
+  </header>
 
-    <!-- Category Filter Buttons -->
-    <div class="filter-bar">
-      <button class="tab-btn active" onclick="filterGrid('all', this)">All 100 Texts ❁</button>
-      <button class="tab-btn" onclick="filterGrid('direct', this)">1–20: Direct Sorry ❁</button>
-      <button class="tab-btn" onclick="filterGrid('miss', this)">21–40: Missing You ❁</button>
-      <button class="tab-btn" onclick="filterGrid('dentist', this)">41–60: Cute Doctor Lines ❁</button>
-      <button class="tab-btn" onclick="filterGrid('bribe', this)">61–80: Peace Treats ❁</button>
-      <button class="tab-btn" onclick="filterGrid('promise', this)">81–100: My Promises ❁</button>
-    </div>
+  <!-- Main Content Container -->
+  <main class="max-w-4xl mx-auto px-4 pt-6 relative z-10 space-y-8">
 
-    <!-- All 100 Cards Grid -->
-    <div class="cards-grid" id="cards-grid"></div>
-  </div>
+    <!-- Hero Welcome Banner -->
+    <section class="bg-gradient-to-r from-pink-500 via-rose-400 to-amber-400 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
+      <div class="relative z-10 max-w-xl">
+        <span class="inline-block px-3 py-1 rounded-full bg-white/25 backdrop-blur-sm text-xs font-bold uppercase tracking-wider mb-3">
+          Emergency Case #100 • VIP Doctor: Chamanthi
+        </span>
+        <h2 class="text-2xl sm:text-4xl font-bold mb-2 leading-tight">
+          Paging Dr. Chamanthi! 🩺🌼
+        </h2>
+        <p class="text-sm sm:text-base text-white/95 font-medium leading-relaxed">
+          A simple text message wasn't special enough for the world's cutest dentist. So I built you an interactive **4-Stage Dental Apology Lab**! Complete the mini-checkups below to cure my foolishness.
+        </p>
+      </div>
+      <div class="absolute -right-6 -bottom-6 text-8xl sm:text-9xl opacity-25 pointer-events-none">
+        🦷🌼
+      </div>
+    </section>
 
-  <!-- Stage 3: Official Forgiveness & Penalty Fine (Connected to your Email) -->
-  <div class="finale-section">
-    <div class="section-title">🩺 Step 3: Doctor's Final Verdict & Penalty Fine</div>
-    <div class="section-sub">Pick my mandatory punishment below and click Forgive!</div>
+    <!-- Interactive Mode Navigation Pills -->
+    <nav class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
+      <button onclick="switchTab(1)" id="tab-btn-1" class="tab-pill bg-pink-500 text-white font-bold py-3 px-3 rounded-2xl shadow-md flex flex-col items-center gap-1 text-xs sm:text-sm transition transform hover:-translate-y-0.5">
+        <span class="text-xl">🪥</span>
+        <span>1. Brush Plaque</span>
+      </button>
+      <button onclick="switchTab(2)" id="tab-btn-2" class="tab-pill bg-white text-slate-700 hover:bg-pink-50 font-bold py-3 px-3 rounded-2xl shadow-sm border border-pink-100 flex flex-col items-center gap-1 text-xs sm:text-sm transition transform hover:-translate-y-0.5">
+        <span class="text-xl">🩻</span>
+        <span>2. X-Ray My Heart</span>
+      </button>
+      <button onclick="switchTab(3)" id="tab-btn-3" class="tab-pill bg-white text-slate-700 hover:bg-pink-50 font-bold py-3 px-3 rounded-2xl shadow-sm border border-pink-100 flex flex-col items-center gap-1 text-xs sm:text-sm transition transform hover:-translate-y-0.5">
+        <span class="text-xl">💊</span>
+        <span>3. 100 Apology Pills</span>
+      </button>
+      <button onclick="switchTab(4)" id="tab-btn-4" class="tab-pill bg-white text-slate-700 hover:bg-pink-50 font-bold py-3 px-3 rounded-2xl shadow-sm border border-pink-100 flex flex-col items-center gap-1 text-xs sm:text-sm transition transform hover:-translate-y-0.5">
+        <span class="text-xl">📜</span>
+        <span>4. Forgive Seal</span>
+      </button>
+    </nav>
 
-    <select class="penalty-select" id="penalty-picker">
-      <option value="Unlimited Ice Cream & Chocolates ˚ʚ❀ɞ˚">Penalty: Unlimited Ice Cream & Chocolates ˚ʚ❀ɞ˚</option>
-      <option value="Fresh Bouquet of Chamanthi Flowers ˚ʚ❀ɞ˚">Penalty: Fresh Bouquet of Chamanthi Flowers ˚ʚ❀ɞ˚</option>
-      <option value="10 Minutes of Non-Stop Scolding (Zero Interruptions) ˚ʚ❀ɞ˚">Penalty: 10 Minutes of Free Scolding 🗣️</option>
-      <option value="Coffee / Food Date Fully Sponsored by Me ˚ʚ❀ɞ˚">Penalty: Coffee & Food Date on Me ˚ʚ❀ɞ˚</option>
-      <option value="Dr. Chamanthi Automatically Wins Next 5 Fights ˚ʚ❀ɞ˚">Penalty: Chamanthi Wins the Next 5 Arguments ˚ʚ❀ɞ˚</option>
-    </select>
-
-    <div class="action-arena">
-      <button class="forgive-btn" onclick="acceptApology()">ㅤꨄ︎ Forgive This Fool, Dr. Chamanthi</button>
-      <button class="angry-btn" id="runaway-btn" onmouseover="dodgeAngry()" onclick="dodgeAngry()">Stay Angry (ｰ̀⤙ｰ́ )</button>
-    </div>
-
-    <div id="certificate-box">
-      <div class="stamp-badge">OFFICIALLY FORGIVEN BY DR. CHAMANTHI ·˚ ༘༘⋆ˎˊ˗✓</div>
-      <h3 style="margin-bottom:6px;">🎉 Patient Discharged from the Doghouse!</h3>
-      <p id="chosen-penalty" style="font-weight:700; margin-top:6px;"></p>
-      <p style="font-size:0.85rem; margin-top:8px;">Screenshot this card and send it to me on WhatsApp to claim your penalty reward immediately! ❤️</p>
-    </div>
-  </div>
-</div>
-
-<script>
-  // All 100 Simple, Easy-to-Understand Apology Texts for Chamanthi
-  const sorryList = [
-    // 1–20: Direct & Honest Apologies (direct)
-    { cat: 'direct', label: 'Direct Apology', text: "Chamanthi, I am really sorry for the way I spoke to you earlier." },
-    { cat: 'direct', label: 'Direct Apology', text: "I didn't mean to hurt your feelings, and I feel terrible about what I said." },
-    { cat: 'direct', label: 'Direct Apology', text: "You had every right to get angry with me. I was completely in the wrong." },
-    { cat: 'direct', label: 'Direct Apology', text: "Sometimes I speak without thinking, and I hate that it hurt you today." },
-    { cat: 'direct', label: 'Direct Apology', text: "Please forgive my careless words—they don't reflect how much I care about you." },
-    { cat: 'direct', label: 'Direct Apology', text: "I wish I could rewind the clock and take back what I said." },
-    { cat: 'direct', label: 'Direct Apology', text: "My tone was completely unnecessary. You deserve so much better from me." },
-    { cat: 'direct', label: 'Direct Apology', text: "I’m not making any excuses. I messed up, and I am truly sorry." },
-    { cat: 'direct', label: 'Direct Apology', text: "The moment those words left my mouth, I knew I had made a mistake." },
-    { cat: 'direct', label: 'Direct Apology', text: "Hurting you is the absolute last thing I ever want to do, Chamanthi." },
-    { cat: 'direct', label: 'Direct Apology', text: "My ego doesn't matter at all compared to your feelings. I'm really sorry." },
-    { cat: 'direct', label: 'Direct Apology', text: "I was impatient and careless with my words. Please forgive me." },
-    { cat: 'direct', label: 'Direct Apology', text: "You always treat me with kindness, and I failed to do the same today." },
-    { cat: 'direct', label: 'Direct Apology', text: "I hate knowing that I am the reason you are upset right now." },
-    { cat: 'direct', label: 'Direct Apology', text: "If I could delete that entire moment, I would do it in a heartbeat." },
-    { cat: 'direct', label: 'Direct Apology', text: "You deserve gentle words and respect, never harsh or thoughtless ones." },
-    { cat: 'direct', label: 'Direct Apology', text: "I'm really disappointed in myself for making you feel bad." },
-    { cat: 'direct', label: 'Direct Apology', text: "Thank you for being honest when I hurt you—I’m listening, and I’m sorry." },
-    { cat: 'direct', label: 'Direct Apology', text: "Please don't stay mad at me for too long; my day feels empty when we fight." },
-    { cat: 'direct', label: 'Direct Apology', text: "I am 100% sorry from the bottom of my heart, Chamanthi." },
-
-    // 21–40: How Much I Miss Talking to You (miss)
-    { cat: 'miss', label: 'Missing You', text: "My phone feels so boring without your messages popping up." },
-    { cat: 'miss', label: 'Missing You', text: "Even five minutes of you being angry with me feels like five days." },
-    { cat: 'miss', label: 'Missing You', text: "Everything feels off-balance when things aren't okay between us." },
-    { cat: 'miss', label: 'Missing You', text: "I miss your laugh and the way you tell me about your day." },
-    { cat: 'miss', label: 'Missing You', text: "Winning an argument means nothing to me if it means losing your smile." },
-    { cat: 'miss', label: 'Missing You', text: "Your silence is the loudest and hardest thing to deal with right now." },
-    { cat: 'miss', label: 'Missing You', text: "I keep checking my phone hoping you’ll forgive me and text back." },
-    { cat: 'miss', label: 'Missing You', text: "Life is way better when you're happy with me, not mad at me." },
-    { cat: 'miss', label: 'Missing You', text: "I miss my favourite person. Can we please call a truce?" },
-    { cat: 'miss', label: 'Missing You', text: "Even when you're angry, you're still the person I want to talk to the most." },
-    { cat: 'miss', label: 'Missing You', text: "No good news feels exciting until I get to share it with you." },
-    { cat: 'miss', label: 'Missing You', text: "I hate going through the day knowing there is distance between us." },
-    { cat: 'miss', label: 'Missing You', text: "My mood is officially stuck on 0% until you smile at me again." },
-    { cat: 'miss', label: 'Missing You', text: "Please come back and talk to me—even if it's just to scold me!" },
-    { cat: 'miss', label: 'Missing You', text: "Being in your bad books is the worst place in the world to be." },
-    { cat: 'miss', label: 'Missing You', text: "I miss your voice and our normal, silly conversations so much." },
-    { cat: 'miss', label: 'Missing You', text: "You are my peace at the end of every day, and I miss having that peace." },
-    { cat: 'miss', label: 'Missing You', text: "I’d rather listen to you lecture me for an hour than have you ignore me." },
-    { cat: 'miss', label: 'Missing You', text: "Nothing feels right until you and I are good again." },
-    { cat: 'miss', label: 'Missing You', text: "Come back soon, Chamanthi—I’m waiting right here until you're ready." },
-
-    // 41–60: Sweet & Simple Dentist Lines (dentist)
-    { cat: 'dentist', label: 'For My Dentist', text: "You spend all day fixing everyone else's smiles, and I ruined yours today. I'm so sorry!" },
-    { cat: 'dentist', label: 'For My Dentist', text: "No painkiller in your clinic could numb how bad I feel for upsetting you." },
-    { cat: 'dentist', label: 'For My Dentist', text: "My favourite dentist deserves the biggest smile, not a frown caused by me." },
-    { cat: 'dentist', label: 'For My Dentist', text: "I wish you could just extract my bad words like a bad tooth!" },
-    { cat: 'dentist', label: 'For My Dentist', text: "After a long, tiring day with patients, I should be your comfort, not your stress." },
-    { cat: 'dentist', label: 'For My Dentist', text: "You work so hard at the clinic every day—you only deserve peace from me." },
-    { cat: 'dentist', label: 'For My Dentist', text: "Even the best dentist in the world can't fix my heartache until you forgive me." },
-    { cat: 'dentist', label: 'For My Dentist', text: "Let’s brush away today's silly fight and start fresh, Doctor!" },
-    { cat: 'dentist', label: 'For My Dentist', text: "You handle your patients with so much patience; I need to learn that from you." },
-    { cat: 'dentist', label: 'For My Dentist', text: "Dr. Chamanthi, please accept this apology from your most foolish patient." },
-    { cat: 'dentist', label: 'For My Dentist', text: "My words were like biting into ice cream with sensitive teeth—totally painful and my fault!" },
-    { cat: 'dentist', label: 'For My Dentist', text: "I promise to stop being a toothache in your life and go back to making you smile." },
-    { cat: 'dentist', label: 'For My Dentist', text: "You look way too cute in your doctor coat to be frowning because of me." },
-    { cat: 'dentist', label: 'For My Dentist', text: "If apologies were chocolates, even a dentist like you would approve of this many!" },
-    { cat: 'dentist', label: 'For My Dentist', text: "Let’s do a clean-up on today's misunderstanding and leave the bad mood behind." },
-    { cat: 'dentist', label: 'For My Dentist', text: "Nobody has a prettier smile than my favourite dentist—please bring it back soon." },
-    { cat: 'dentist', label: 'For My Dentist', text: "You take care of everyone’s teeth all day; let me take care of your mood tonight." },
-    { cat: 'dentist', label: 'For My Dentist', text: "Official medical report: I was totally wrong, and Dr. Chamanthi is 100% right." },
-    { cat: 'dentist', label: 'For My Dentist', text: "I need an emergency appointment to get back into Dr. Chamanthi’s good books!" },
-    { cat: 'dentist', label: 'For My Dentist', text: "Keep healing the world with your hands, and let me make up for my silly mouth." },
-
-    // 61–80: Cute Peace Offerings & Lighthearted Bribes (bribe)
-    { cat: 'bribe', label: 'Peace Offering', text: "Can I bribe you with your favourite ice cream so you stop being mad at me?" },
-    { cat: 'bribe', label: 'Peace Offering', text: "You get a free pass to scold me for 10 minutes straight without me interrupting!" },
-    { cat: 'bribe', label: 'Peace Offering', text: "Tell me what you want to eat today—it’s 100% on me as my penalty fine." },
-    { cat: 'bribe', label: 'Peace Offering', text: "Just like your name, you deserve fresh Chamanthi flowers and zero bad vibes." },
-    { cat: 'bribe', label: 'Peace Offering', text: "If you forgive me right now, I’ll agree that you are right in our next three fights too!" },
-    { cat: 'bribe', label: 'Peace Offering', text: "Let me take you out for coffee or chai to make up for being an idiot." },
-    { cat: 'bribe', label: 'Peace Offering', text: "I’m officially giving you full control of what we watch and eat next time we meet." },
-    { cat: 'bribe', label: 'Peace Offering', text: "How many chocolates does it take to get one small smile from Chamanthi?" },
-    { cat: 'bribe', label: 'Peace Offering', text: "You can pinch my cheeks or hit my arm once as punishment, then we're friends again!" },
-    { cat: 'bribe', label: 'Peace Offering', text: "Send me one emoji—even an angry one—just so I know you read this." },
-    { cat: 'bribe', label: 'Peace Offering', text: "I am waving a big white flag right now. I surrender!" },
-    { cat: 'bribe', label: 'Peace Offering', text: "Let’s trade: you give me your anger, and I’ll give you your favourite snacks." },
-    { cat: 'bribe', label: 'Peace Offering', text: "Tell me my punishment, Doctor—I’ll accept the bill without complaining." },
-    { cat: 'bribe', label: 'Peace Offering', text: "Even when you are super mad at me, you’re still the cutest person I know." },
-    { cat: 'bribe', label: 'Peace Offering', text: "Look in the mirror right now—see? Too pretty to stay angry at a dummy like me." },
-    { cat: 'bribe', label: 'Peace Offering', text: "One small smile from you right now and my whole week will be saved." },
-    { cat: 'bribe', label: 'Peace Offering', text: "I’ll write 'Chamanthi is always right' 100 times in a notebook if it makes you laugh." },
-    { cat: 'bribe', label: 'Peace Offering', text: "Can we skip the angry part and jump straight to the making-up part?" },
-    { cat: 'bribe', label: 'Peace Offering', text: "Your anger is valid, your feelings are valid, and my desire to buy you food is also valid!" },
-    { cat: 'bribe', label: 'Peace Offering', text: "Smile for just two seconds—I promise I won’t tell anyone you stopped being mad!" },
-
-    // 81–100: Genuine Promises for the Future (promise)
-    { cat: 'promise', label: 'My Promise', text: "I promise to think twice before speaking whenever emotions are high." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to listen to your feelings patiently instead of reacting fast." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to always speak to you with the kindness and respect you deserve." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to never let my bad mood spill over onto you." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to protect your peace, especially when you've had a long day." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to apologize quickly whenever I'm wrong instead of being stubborn." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to never take your patience or your sweet heart for granted." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to be a better listener every single day." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to put our bond above every small disagreement." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to make you smile ten times more than I ever make you frown." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to pause, take a deep breath, and choose gentle words next time." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to always be your safe space where you feel valued and heard." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to show you through my actions—not just these texts—that I mean it." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to never go to sleep leaving you hurt or upset with me." },
-    { cat: 'promise', label: 'My Promise', text: "I promise to keep learning how to care for you better." },
-    { cat: 'promise', label: 'My Promise', text: "Take all the time you need to cool down—I’ll be right here waiting for you." },
-    { cat: 'promise', label: 'My Promise', text: "No matter how much we argue, you will always be the most important person to me." },
-    { cat: 'promise', label: 'My Promise', text: "Thank you for making me want to be a gentler, better person, Chamanthi." },
-    { cat: 'promise', label: 'My Promise', text: "Whenever you're ready to forgive me, I have the biggest hug waiting for you." },
-    { cat: 'promise', label: 'My Promise', text: "Out of all 100 messages, the simplest truth is: I'm truly sorry, and you mean the world to me. ❤️" }
-  ];
-
-  let currentSlide = 0;
-  let smilePercent = 12;
-  let currentFilter = 'all';
-
-  // Update Smile Meter & Read Count
-  function addSmile(points) {
-    smilePercent = Math.min(100, smilePercent + points);
-    document.getElementById('smile-pct').innerText = smilePercent + '%';
-    document.getElementById('smile-fill').style.width = smilePercent + '%';
-
-    const readCount = sorryList.filter(i => i.read).length;
-    document.getElementById('read-counter').innerText = `${readCount} / 100 Read`;
-
-    const mascot = document.getElementById('mascot');
-    if (smilePercent >= 85) mascot.innerText = '❀';
-    else if (smilePercent >= 45) mascot.innerText = '❀';
-  }
-
-  // Stage 1: Scrub Plaque Spots
-  function scrubSpot(el) {
-    if (!el.classList.contains('cleaned')) {
-      el.classList.add('cleaned');
-      el.innerHTML = ' Scrubbed Clean!';
-      addSmile(6);
-      burstEmojis();
-      document.getElementById('tool-feedback').innerText = "🪥 Great job, Doctor! One more foolish habit scrubbed away!";
-    }
-  }
-
-  // Stage 1: Dental Tools
-  function runTool(type) {
-    const fb = document.getElementById('tool-feedback');
-    addSmile(5);
-    burstEmojis();
-    if (type === 'suction') fb.innerText = " *WHIRRR!* All careless words have been suctioned out of the air!";
-    if (type === 'polish') fb.innerText = " *BUZZ!* Polishing Dr. Chamanthi's gorgeous smile back to 100% shine!";
-    if (type === 'flowers') fb.innerText = "❀ A virtual basket of fresh yellow Chamanthi flowers has arrived for you!";
-    if (type === 'icecream') fb.innerText = " Emergency peace-offering ice cream prescribed by the clinic!";
-  }
-
-  // Stage 2: Spotlight Flipbook Controls
-  function renderSlide() {
-    const item = sorryList[currentSlide];
-    document.getElementById('flip-badge').innerText = `Sorry Note #${currentSlide + 1} of 100 • ${item.label}`;
-    document.getElementById('flip-text').innerText = item.text;
-    if (!item.read) {
-      item.read = true;
-      addSmile(1);
-      renderGrid(currentFilter);
-    }
-  }
-  function changeSlide(dir) {
-    currentSlide = (currentSlide + dir + sorryList.length) % sorryList.length;
-    renderSlide();
-  }
-  function randomSlide() {
-    currentSlide = Math.floor(Math.random() * sorryList.length);
-    renderSlide();
-    burstEmojis();
-  }
-
-  // Stage 2: Render All 100 Cards Grid
-  function renderGrid(filter = 'all') {
-    currentFilter = filter;
-    const grid = document.getElementById('cards-grid');
-    grid.innerHTML = '';
-    sorryList.forEach((item, index) => {
-      if (filter !== 'all' && item.cat !== filter) return;
-      const card = document.createElement('div');
-      card.className = 'sorry-card' + (item.read ? ' read' : '');
-      card.innerHTML = `
-        <div class="sorry-meta">
-          <span>#${index + 1} • ${item.label}</span>
-          <span>${item.read ? ' Read' : ' Tap'}</span>
+    <!-- ==========================================
+         STAGE 1: BRUSH AWAY MY SILLY WORDS (CANVAS)
+         ========================================== -->
+    <section id="stage-1" class="stage-card bg-white/95 backdrop-blur-md rounded-3xl p-5 sm:p-8 shadow-xl border-2 border-pink-200">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-pink-500 bg-pink-50 px-3 py-1 rounded-full">
+            Stage 1 • Interactive Hygiene Game
+          </span>
+          <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">
+            🪥 Scrub Away My Careless Words!
+          </h3>
         </div>
-        <div class="sorry-body">${item.text}</div>
-      `;
-      card.onclick = () => {
-        currentSlide = index;
-        if (!item.read) {
-          item.read = true;
-          addSmile(1);
-          burstEmojis();
-        }
-        renderSlide();
-        renderGrid(currentFilter);
-      };
-      grid.appendChild(card);
-    });
-  }
+        <div class="flex items-center gap-2">
+          <span class="text-xs font-bold text-cyan-700 bg-cyan-50 px-3 py-1.5 rounded-full border border-cyan-200">
+            Cleaned: <span id="clean-pct">0%</span>
+          </span>
+          <button onclick="resetScratchCard()" class="text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-600 px-3 py-1.5 rounded-full transition">
+            🔄 Reset Plaque
+          </button>
+        </div>
+      </div>
 
-  function filterGrid(cat, btn) {
-    document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-    btn.classList.add('active');
-    renderGrid(cat);
-  }
+      <p class="text-sm text-slate-600 mb-5">
+        Dr. Chamanthi, my silly mouth left annoying "plaque" over your smile today. **Drag your finger or mouse across the card below** to scrub away my dumb words with minty toothpaste foam!
+      </p>
 
-  // Stage 3: Runaway Angry Button & Forgive Finale + Email Dispatcher
-  function dodgeAngry() {
-    const btn = document.getElementById('runaway-btn');
-    const lines = [
-      "Nope! Too slow, Doctor ",
-      "Error 404: Anger Not Found ",
-      "Click the Blue Button! ",
-      "Too cute to stay mad! ❀",
-      "Dental Council says Forgive Him! 🩺"
-    ];
-    btn.innerText = lines[Math.floor(Math.random() * lines.length)];
-    const x = (Math.random() - 0.5) * 200;
-    const y = (Math.random() - 0.5) * 70;
-    btn.style.transform = `translate(${x}px, ${y}px)`;
-  }
+      <!-- Scratch Off Container -->
+      <div class="scratch-container" id="scratch-box">
+        <!-- Secret Underneath Layer -->
+        <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none z-0">
+          <div class="text-5xl sm:text-6xl mb-2 animate-bounce">🦷✨🌼</div>
+          <h4 class="text-xl sm:text-2xl font-bold text-pink-600 mb-2">
+            Sparkling Clean! You Found My True Heart!
+          </h4>
+          <p class="text-sm sm:text-base text-slate-700 font-semibold max-w-md leading-relaxed">
+            "Dearest <span class="text-pink-600 font-bold">Dr. Chamanthi</span>, underneath my clumsy, unfiltered sentences is someone who adores you endlessly. Your smile is my favourite view in the world—I am so deeply sorry for making you angry! 💖"
+          </p>
+          <div class="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">
+            🌼 100% Plaque-Free Love Restored!
+          </div>
+        </div>
 
-  function acceptApology() {
-    addSmile(100);
-    const penalty = document.getElementById('penalty-picker').value;
-    document.getElementById('chosen-penalty').innerText = "Selected Penalty: " + penalty;
-    document.getElementById('certificate-box').style.display = 'block';
-    document.getElementById('runaway-btn').style.display = 'none';
+        <!-- Top Plaque Canvas to Scrub Away -->
+        <canvas id="scratch-canvas"></canvas>
+      </div>
 
-    // Silently send the chosen penalty result to your email via Formspree free API
-    const formData = new FormData();
-    formData.append("email", "surakota.vijaybabu@gmail.com");
-    formData.append("message", "Great news Vijay! Dr. Chamanthi clicked Forgive and selected this penalty: " + penalty);
-    
-    fetch("https://formspree.io/f/xyzkreqp", {
-      method: "POST",
-      body: formData,
-      headers: { 'Accept': 'application/json' }
-    }).catch(err => console.log("Email dispatch background notice"));
+      <div class="mt-5 flex justify-center">
+        <button onclick="switchTab(2)" class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold px-6 py-3 rounded-full shadow-lg text-sm flex items-center gap-2 transition transform hover:scale-105">
+          <span>Next: Perform Live X-Ray Scan</span> <span>🩻➡️</span>
+        </button>
+      </div>
+    </section>
 
-    for (let i = 0; i < 20; i++) {
-      setTimeout(burstEmojis, i * 90);
+    <!-- ==========================================
+         STAGE 2: LIVE HEART & DENTAL X-RAY SCANNER
+         ========================================== -->
+    <section id="stage-2" class="stage-card hidden bg-white/95 backdrop-blur-md rounded-3xl p-5 sm:p-8 shadow-xl border-2 border-cyan-200">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 bg-cyan-50 px-3 py-1 rounded-full">
+            Stage 2 • Diagnostic Radiology
+          </span>
+          <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">
+            🩻 Dr. Chamanthi's Live X-Ray Lens
+          </h3>
+        </div>
+        <span class="text-xs font-bold text-pink-600 bg-pink-50 px-3 py-1.5 rounded-full">
+          Drag the glowing blue lens around!
+        </span>
+      </div>
+
+      <p class="text-sm text-slate-600 mb-5">
+        Move your finger or cursor across the patient below to inspect what is *actually* going on inside my brain, teeth, and heart since you got mad at me!
+      </p>
+
+      <!-- Interactive X-Ray Box -->
+      <div class="xray-stage" id="xray-box">
+        <!-- Normal Surface Layer (Outside Lens) -->
+        <div class="absolute inset-0 flex flex-col items-center justify-between p-6 text-center bg-gradient-to-br from-rose-50 via-white to-amber-50">
+          <div class="w-full flex justify-between items-center text-xs font-bold text-slate-400">
+            <span>PATIENT ID: #FOOL-001</span>
+            <span>ATTENDING: DR. CHAMANTHI</span>
+          </div>
+
+          <div class="my-auto space-y-3">
+            <div class="text-6xl">🙋‍♂️💐</div>
+            <h4 class="text-lg sm:text-xl font-bold text-slate-800">
+              Surface Appearance: "Trying to Act Normal"
+            </h4>
+            <p class="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto">
+              Move the **X-Ray Scanner Circle** over my head, mouth, and chest to reveal the hidden clinical truth underneath!
+            </p>
+          </div>
+
+          <div class="grid grid-cols-3 gap-2 w-full text-xs font-bold text-slate-600">
+            <div class="bg-white/90 p-2 rounded-xl border border-pink-100">🧠 Brain Zone</div>
+            <div class="bg-white/90 p-2 rounded-xl border border-pink-100">🦷 Mouth Zone</div>
+            <div class="bg-white/90 p-2 rounded-xl border border-pink-100">❤️ Heart Zone</div>
+          </div>
+        </div>
+
+        <!-- Hidden X-Ray Layer (Revealed Inside Circular Clip Path) -->
+        <div class="xray-underlay p-5 flex flex-col justify-between" id="xray-underlay">
+          <div class="flex justify-between items-center text-xs font-mono text-cyan-300 border-b border-cyan-800 pb-2">
+            <span>[X-RAY ACTIVE: 120kV]</span>
+            <span>DIAGNOSIS: MISSING CHAMANTHI</span>
+          </div>
+
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-auto text-center">
+            <div class="bg-slate-900/90 border border-cyan-500/50 p-3 rounded-2xl">
+              <div class="text-2xl mb-1">🧠🌼</div>
+              <div class="text-xs font-bold text-amber-300 uppercase">Cranial Scan</div>
+              <p class="text-[11px] text-cyan-100 mt-1">
+                99.9% occupied by thoughts of Dr. Chamanthi. 0.1% regretting my dumb sentence!
+              </p>
+            </div>
+
+            <div class="bg-slate-900/90 border border-pink-500/50 p-3 rounded-2xl">
+              <div class="text-2xl mb-1">🦷📉</div>
+              <div class="text-xs font-bold text-pink-400 uppercase">Wisdom Tooth X-Ray</div>
+              <p class="text-[11px] text-cyan-100 mt-1">
+                Zero wisdom detected when I spoke earlier! Sweet tooth 100% addicted to your smile.
+              </p>
+            </div>
+
+            <div class="bg-slate-900/90 border border-rose-500/50 p-3 rounded-2xl">
+              <div class="text-2xl mb-1">💔🩺</div>
+              <div class="text-xs font-bold text-rose-400 uppercase">Cardiac Scan</div>
+              <p class="text-[11px] text-cyan-100 mt-1">
+                Hairline fracture caused by your silence. Needs 1 immediate smile from Dr. Chamanthi!
+              </p>
+            </div>
+          </div>
+
+          <div class="text-center text-xs font-mono text-emerald-300 bg-emerald-950/60 py-1.5 rounded-lg border border-emerald-700/50">
+            ✅ RADIOLOGY VERDICT: Zero malice found—only a clumsy boy who adores you!
+          </div>
+        </div>
+
+        <!-- Visual Scanner Ring -->
+        <div class="xray-ring" id="xray-ring">
+          <span class="bg-cyan-500 text-slate-950 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow">
+            🩻 X-Ray Lens
+          </span>
+        </div>
+      </div>
+
+      <div class="mt-5 flex justify-center">
+        <button onclick="switchTab(3)" class="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold px-6 py-3 rounded-full shadow-lg text-sm flex items-center gap-2 transition transform hover:scale-105">
+          <span>Next: Open 100 Apology Words Dispenser</span> <span>💊➡️</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STAGE 3: 100 UNIQUE APOLOGY WORDS DISPENSER
+         ========================================== -->
+    <section id="stage-3" class="stage-card hidden bg-white/95 backdrop-blur-md rounded-3xl p-5 sm:p-8 shadow-xl border-2 border-amber-200">
+      <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
+            Stage 3 • Dental Pharmacy of 100 Words
+          </span>
+          <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">
+            💊 100 Unique Words to Apologize (Zero Repeats!)
+          </h3>
+        </div>
+        <div class="text-xs font-bold text-pink-600 bg-pink-50 px-3 py-1.5 rounded-full">
+          Unlocked: <span id="unlocked-count">1</span> / 100 Words
+        </div>
+      </div>
+
+      <p class="text-sm text-slate-600 mb-6">
+        You asked for **100 different words** instead of just repeating "sorry". Twist the **Dental Capsule Machine** below for a surprise apology word, or browse & tap all **100 unique apology word badges** in the interactive cloud!
+      </p>
+
+      <!-- Capsule Dispenser & Active Prescription Display -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-6 items-center bg-gradient-to-br from-pink-50 via-white to-cyan-50 p-5 rounded-3xl border-2 border-pink-100 mb-6">
+        
+        <!-- Left: Cute Capsule Machine -->
+        <div class="md:col-span-5 flex flex-col items-center text-center">
+          <div id="capsule-globe" class="w-40 h-40 rounded-full bg-gradient-to-tr from-cyan-100/80 via-white/90 to-pink-100/80 border-4 border-pink-300 shadow-inner flex flex-wrap items-center justify-center p-4 gap-1.5 relative overflow-hidden">
+            <span class="px-2 py-0.5 rounded-full bg-pink-400 text-white text-[10px] font-bold rotate-12">Remorseful</span>
+            <span class="px-2 py-0.5 rounded-full bg-cyan-500 text-white text-[10px] font-bold -rotate-6">Chamanthi</span>
+            <span class="px-2 py-0.5 rounded-full bg-amber-400 text-slate-900 text-[10px] font-bold rotate-6">Sheepish</span>
+            <span class="px-2 py-0.5 rounded-full bg-purple-400 text-white text-[10px] font-bold -rotate-12">Devoted</span>
+            <span class="px-2 py-0.5 rounded-full bg-emerald-400 text-white text-[10px] font-bold">Penitent</span>
+            <span class="px-2 py-0.5 rounded-full bg-rose-400 text-white text-[10px] font-bold rotate-3">Toothache</span>
+            <div class="text-3xl mt-1">🦷💊🌼</div>
+          </div>
+          <div class="w-28 h-8 bg-pink-500 rounded-b-2xl -mt-2 shadow-md flex items-center justify-center text-white text-xs font-bold">
+            RX DISPENSER
+          </div>
+
+          <button onclick="dispenseRandomWord()" class="mt-4 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:opacity-95 text-white font-bold px-5 py-2.5 rounded-full shadow-lg text-sm flex items-center gap-2 transition active:scale-95">
+            <span>🎰 Dispense Surprise Word</span>
+          </button>
+        </div>
+
+        <!-- Right: Dispensed Capsule Details Card -->
+        <div class="md:col-span-7">
+          <div id="dispensed-card" class="bg-white rounded-2xl p-5 shadow-md border-2 border-pink-200 relative overflow-hidden">
+            <div class="flex items-center justify-between gap-2 mb-2">
+              <span id="pill-number" class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-pink-100 text-pink-700">
+                💊 Capsule #1 of 100
+              </span>
+              <span id="pill-category" class="text-xs font-bold text-cyan-600">
+                ✨ Heartfelt Vocabulary
+              </span>
+            </div>
+            <h4 id="pill-word" class="text-2xl sm:text-3xl font-bold text-pink-600 mb-2">
+              1. Contrite
+            </h4>
+            <p id="pill-meaning" class="text-sm sm:text-base text-slate-700 font-medium leading-relaxed">
+              Feeling deep, genuine remorse inside my chest because my careless words dimmed Dr. Chamanthi's precious smile.
+            </p>
+            <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
+              <span>Tap any of the 100 word pills below to inspect!</span>
+              <span>🦷🌼</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Search & Filter Bar for the 100 Unique Words -->
+      <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
+        <div class="flex flex-wrap gap-1.5">
+          <button onclick="filterWordCloud('all', this)" class="cloud-filter bg-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-full transition">All 100 Words 🌟</button>
+          <button onclick="filterWordCloud('Emotion', this)" class="cloud-filter bg-pink-50 text-pink-700 hover:bg-pink-100 text-xs font-bold px-3 py-1.5 rounded-full transition">1-20: Deep Remorse 🥺</button>
+          <button onclick="filterWordCloud('Dental', this)" class="cloud-filter bg-cyan-50 text-cyan-700 hover:bg-cyan-100 text-xs font-bold px-3 py-1.5 rounded-full transition">21-40: Dental Terms 🦷</button>
+          <button onclick="filterWordCloud('Floral', this)" class="cloud-filter bg-amber-50 text-amber-800 hover:bg-amber-100 text-xs font-bold px-3 py-1.5 rounded-full transition">41-60: Chamanthi Praise 🌼</button>
+          <button onclick="filterWordCloud('Bribe', this)" class="cloud-filter bg-purple-50 text-purple-700 hover:bg-purple-100 text-xs font-bold px-3 py-1.5 rounded-full transition">61-80: Peace Treats 🍦</button>
+          <button onclick="filterWordCloud('Vow', this)" class="cloud-filter bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold px-3 py-1.5 rounded-full transition">81-100: Future Vows 🤞</button>
+        </div>
+
+        <input type="text" id="word-search" oninput="searchWords(this.value)" placeholder="🔍 Search 100 words..." class="text-xs px-3.5 py-2 rounded-full border border-pink-200 focus:outline-none focus:border-pink-500 bg-white w-full sm:w-48" />
+      </div>
+
+      <!-- Interactive 100-Word Tag Cloud -->
+      <div id="word-cloud" class="custom-scroll max-h-72 overflow-y-auto p-4 rounded-2xl bg-slate-50/90 border border-slate-200 flex flex-wrap gap-2 justify-center">
+        <!-- Populated dynamically with 100 unique words -->
+      </div>
+
+      <div class="mt-6 flex justify-center">
+        <button onclick="switchTab(4)" class="bg-gradient-to-r from-amber-500 to-pink-500 hover:from-amber-600 hover:to-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg text-sm flex items-center gap-2 transition transform hover:scale-105">
+          <span>Final Step: Official Dental Council Certificate</span> <span>📜➡️</span>
+        </button>
+      </div>
+    </section>
+
+    <!-- ==========================================
+         STAGE 4: OFFICIAL CERTIFICATE & STAMP
+         ========================================== -->
+    <section id="stage-4" class="stage-card hidden bg-white/95 backdrop-blur-md rounded-3xl p-5 sm:p-8 shadow-xl border-2 border-pink-300">
+      <div class="text-center max-w-xl mx-auto mb-6">
+        <span class="text-xs font-bold uppercase tracking-wider text-pink-600 bg-pink-50 px-3 py-1 rounded-full">
+          Stage 4 • Final Clinical Discharge
+        </span>
+        <h3 class="text-2xl sm:text-3xl font-bold text-slate-800 mt-2">
+          📜 Official Dental Board Clearance
+        </h3>
+        <p class="text-sm text-slate-600 mt-1">
+          Only **Dr. Chamanthi** has the authority to stamp this certificate and discharge this foolish patient from the doghouse!
+        </p>
+      </div>
+
+      <!-- Official Certificate Box -->
+      <div class="max-w-xl mx-auto bg-gradient-to-b from-amber-50/70 via-white to-rose-50/70 border-4 border-double border-amber-400 rounded-3xl p-6 sm:p-8 shadow-inner relative overflow-hidden">
+        <div class="flex justify-between items-center border-b-2 border-amber-200 pb-3 mb-4">
+          <div class="flex items-center gap-2">
+            <span class="text-2xl">🦷🌼</span>
+            <div class="text-left">
+              <div class="text-xs font-bold uppercase tracking-widest text-amber-800">Supreme Dental Council of Love</div>
+              <div class="text-[11px] text-slate-500">Presiding Chief Officer: Dr. Chamanthi</div>
+            </div>
+          </div>
+          <span class="text-xs font-mono font-bold text-pink-600 bg-pink-50 px-2.5 py-1 rounded-md border border-pink-200">
+            CERT #100-CUTE
+          </span>
+        </div>
+
+        <p class="text-sm sm:text-base text-slate-700 leading-relaxed text-center italic mb-6">
+          "This document certifies that the patient has undergone thorough **Plaque Scrubbing**, **Heart X-Ray Inspection**, and **100 Unique Capsules of Remorse**. He solemnly swears to treat Dr. Chamanthi's heart with gentle precision and never utter careless words again."
+        </p>
+
+        <!-- Custom Bribe Selector for Her -->
+        <div class="bg-white/90 rounded-2xl p-4 border border-pink-100 mb-6">
+          <label class="block text-xs font-bold uppercase tracking-wider text-pink-600 mb-2 text-center">
+            🎁 Dr. Chamanthi, Select Your Mandatory Penalty Fine for Him:
+          </label>
+          <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-bold">
+            <button onclick="selectFine(this, '🍦 Ice Cream Date')" class="fine-btn bg-pink-500 text-white py-2 px-3 rounded-xl transition">🍦 Ice Cream Date</button>
+            <button onclick="selectFine(this, '🌼 Fresh Chamanthi Flowers')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">🌼 Fresh Flowers</button>
+            <button onclick="selectFine(this, '🍫 Unlimited Chocolates')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">🍫 Chocolates</button>
+            <button onclick="selectFine(this, '🥟 Street Food / Panipuri')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">🥟 Panipuri Treat</button>
+            <button onclick="selectFine(this, '👂 10 Mins Free Scolding')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">👂 Free Scolding</button>
+            <button onclick="selectFine(this, '💖 All of the Above!')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">💖 All of Above!</button>
+          </div>
+        </div>
+
+        <!-- Wax Stamp Overlay (Hidden until clicked) -->
+        <div id="official-stamp" class="hidden my-4 mx-auto w-48 h-48 rounded-full border-4 border-dashed border-emerald-600 bg-emerald-50/95 flex flex-col items-center justify-center text-center p-4 shadow-xl">
+          <span class="text-3xl">🦷✅🌼</span>
+          <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 mt-1">Officially Forgiven</span>
+          <span class="text-sm font-extrabold text-pink-600">BY DR. CHAMANTHI</span>
+          <span id="chosen-fine-text" class="text-[11px] font-semibold text-emerald-700 mt-1 bg-white px-2 py-0.5 rounded-full">
+            Penalty: 🍦 Ice Cream Date
+          </span>
+        </div>
+
+        <!-- Interactive Action Buttons (Stamp vs Runaway Angry Button) -->
+        <div class="relative min-h-[90px] flex flex-wrap items-center justify-center gap-4 mt-4">
+          <button onclick="stampForgiveness()" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold px-7 py-3.5 rounded-full shadow-xl text-sm sm:text-base flex items-center gap-2 transition transform hover:scale-105 z-10">
+            <span>💮 Stamp "Forgiven" Seal</span>
+          </button>
+
+          <button id="runaway-btn" onmouseover="dodgeAngryButton()" ontouchstart="dodgeAngryButton(event)" onclick="dodgeAngryButton()" class="bg-slate-300 text-slate-700 font-bold px-5 py-3 rounded-full text-xs sm:text-sm transition-all duration-150">
+            Stay Angry 😠
+          </button>
+        </div>
+
+        <!-- Final Celebration Banner -->
+        <div id="final-banner" class="hidden mt-4 bg-gradient-to-r from-pink-500 to-amber-500 text-white p-4 rounded-2xl text-center shadow-lg">
+          <p class="font-bold text-base sm:text-lg">
+            🎉 YAY! The World's Prettiest Dentist Smiled Again! 🦷🌼💖
+          </p>
+          <p class="text-xs sm:text-sm mt-1 opacity-95">
+            Screenshot this stamped certificate and send it to me to claim your <span id="banner-fine" class="underline font-bold">🍦 Ice Cream Date</span> immediately!
+          </p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script>
+    /* =====================================================
+       WEB AUDIO API SYNTHESIZER (CUTE SOUND EFFECTS)
+       ===================================================== */
+    let soundEnabled = true;
+    let audioCtx = null;
+
+    function initAudio() {
+      if (!audioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) audioCtx = new AudioContext();
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
     }
-    document.getElementById('certificate-box').scrollIntoView({ behavior: 'smooth' });
-  }
 
-  // Floating Background Animations
-  const bg = document.getElementById('floating-bg');
-  const icons = ['🦷', '🌼', '💖', '✨', '🩺', '🌸'];
-  function spawnFloater() {
-    const el = document.createElement('div');
-    el.className = 'floater';
-    el.innerText = icons[Math.floor(Math.random() * icons.length)];
-    el.style.left = Math.random() * 100 + 'vw';
-    el.style.animationDuration = (6 + Math.random() * 5) + 's';
-    bg.appendChild(el);
-    setTimeout(() => el.remove(), 11000);
-  }
-  setInterval(spawnFloater, 900);
+    function toggleSound() {
+      soundEnabled = !soundEnabled;
+      document.getElementById('sound-icon').innerText = soundEnabled ? '🔊' : '🔇';
+      if (soundEnabled) playPopSound(600);
+    }
 
-  function burstEmojis() {
-    for (let i = 0; i < 3; i++) spawnFloater();
-  }
+    function playPopSound(freq = 520) {
+      if (!soundEnabled) return;
+      try {
+        initAudio();
+        if (!audioCtx) return;
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sine';
+        osc.frequency.setValueAtTime(freq, audioCtx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(freq * 1.45, audioCtx.currentTime + 0.09);
+        gain.gain.setValueAtTime(0.12, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.09);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.09);
+      } catch (e) {}
+    }
 
-  // Initialize on load
-  renderGrid('all');
-</script>
+    function playSuccessMelody() {
+      if (!soundEnabled) return;
+      const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      notes.forEach((note, idx) => {
+        setTimeout(() => playPopSound(note), idx * 110);
+      });
+    }
 
+    /* =====================================================
+       MOOD METER & NAVIGATION TABS
+       ===================================================== */
+    let moodProgress = 20;
+    function addMood(amount) {
+      moodProgress = Math.min(100, moodProgress + amount);
+      const pctEl = document.getElementById('mood-pct');
+      const barEl = document.getElementById('mood-bar');
+      if (pctEl) pctEl.innerText = moodProgress + '%';
+      if (barEl) barEl.style.width = moodProgress + '%';
+    }
+
+    function switchTab(tabNum) {
+      playPopSound(480 + tabNum * 60);
+      for (let i = 1; i <= 4; i++) {
+        const stage = document.getElementById('stage-' + i);
+        const btn = document.getElementById('tab-btn-' + i);
+        if (i === tabNum) {
+          stage.classList.remove('hidden');
+          btn.className = "tab-pill bg-pink-500 text-white font-bold py-3 px-3 rounded-2xl shadow-md flex flex-col items-center gap-1 text-xs sm:text-sm transition transform -translate-y-0.5";
+        } else {
+          stage.classList.add('hidden');
+          btn.className = "tab-pill bg-white text-slate-700 hover:bg-pink-50 font-bold py-3 px-3 rounded-2xl shadow-sm border border-pink-100 flex flex-col items-center gap-1 text-xs sm:text-sm transition transform hover:-translate-y-0.5";
+        }
+      }
+      if (tabNum === 1) resizeScratchCanvas();
+    }
+
+    /* =====================================================
+       STAGE 1: TOOTHBRUSH SCRATCH-OFF CANVAS
+       ===================================================== */
+    const canvas = document.getElementById('scratch-canvas');
+    const ctx = canvas.getContext('2d');
+    let isBrushing = false;
+    let cleanCelebrated = false;
+
+    function drawPlaqueLayer() {
+      const w = canvas.width;
+      const h = canvas.height;
+      ctx.globalCompositeOperation = 'source-over';
+
+      // Plaque Coating Background
+      const grad = ctx.createLinearGradient(0, 0, w, h);
+      grad.addColorStop(0, '#fde047');
+      grad.addColorStop(0.5, '#fca5a5');
+      grad.addColorStop(1, '#fdba74');
+      ctx.fillStyle = grad;
+      ctx.fillRect(0, 0, w, h);
+
+      // Cute Silly Plaque Blobs & Dumb Words
+      const sillyBubbles = [
+        { x: w * 0.25, y: h * 0.26, text: "🦠 My Unfiltered Mouth" },
+        { x: w * 0.72, y: h * 0.24, text: "🦠 Speaking Without Thinking" },
+        { x: w * 0.50, y: h * 0.50, text: "🪥 SCRUB HERE WITH YOUR FINGER!" },
+        { x: w * 0.28, y: h * 0.76, text: "🦠 Clumsy Ego Plaque" },
+        { x: w * 0.73, y: h * 0.74, text: "🦠 Foot-In-Mouth Bacteria" }
+      ];
+
+      sillyBubbles.forEach((b, idx) => {
+        ctx.fillStyle = idx === 2 ? '#be123c' : 'rgba(255, 255, 255, 0.88)';
+        ctx.beginPath();
+        ctx.roundRect(b.x - 105, b.y - 20, 210, 40, 20);
+        ctx.fill();
+
+        ctx.fillStyle = idx === 2 ? '#ffffff' : '#881337';
+        ctx.font = 'bold 12px Quicksand, sans-serif';
+        ctx.textAlign = 'center';
+        ctx.textBaseline = 'middle';
+        ctx.fillText(b.text, b.x, b.y);
+      });
+    }
+
+    function resizeScratchCanvas() {
+      const box = document.getElementById('scratch-box');
+      if (!box) return;
+      const rect = box.getBoundingClientRect();
+      if (rect.width === 0) return;
+      canvas.width = rect.width;
+      canvas.height = rect.height;
+      drawPlaqueLayer();
+      document.getElementById('clean-pct').innerText = '0%';
+      cleanCelebrated = false;
+    }
+
+    function resetScratchCard() {
+      playPopSound(400);
+      resizeScratchCanvas();
+    }
+
+    function spawnFoamBubble(x, y) {
+      const box = document.getElementById('scratch-box');
+      const bubble = document.createElement('div');
+      bubble.className = 'foam-bubble';
+      const size = 12 + Math.random() * 18;
+      bubble.style.width = size + 'px';
+      bubble.style.height = size + 'px';
+      bubble.style.left = (x - size / 2 + (Math.random() - 0.5) * 25) + 'px';
+      bubble.style.top = (y - size / 2 + (Math.random() - 0.5) * 25) + 'px';
+      box.appendChild(bubble);
+      setTimeout(() => bubble.remove(), 700);
+    }
+
+    function scrubAt(x, y) {
+      ctx.globalCompositeOperation = 'destination-out';
+      ctx.beginPath();
+      ctx.arc(x, y, 34, 0, Math.PI * 2);
+      ctx.fill();
+
+      if (Math.random() > 0.45) {
+        spawnFoamBubble(x, y);
+        playPopSound(650 + Math.random() * 250);
+      }
+      calculateCleanPercentage();
+    }
+
+    function calculateCleanPercentage() {
+      const imgData = ctx.getImageData(0, 0, canvas.width, canvas.height).data;
+      let transparentPixels = 0;
+      const totalSampled = imgData.length / 64;
+      for (let i = 3; i < imgData.length; i += 64) {
+        if (imgData[i] < 128) transparentPixels++;
+      }
+      const pct = Math.min(100, Math.round((transparentPixels / totalSampled) * 115));
+      document.getElementById('clean-pct').innerText = pct + '%';
+
+      if (pct >= 75 && !cleanCelebrated) {
+        cleanCelebrated = true;
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        document.getElementById('clean-pct').innerText = '100%';
+        addMood(25);
+        playSuccessMelody();
+        burstParticles(12);
+      }
+    }
+
+    // Mouse & Touch Events for Toothbrushing
+    canvas.addEventListener('mousedown', (e) => {
+      isBrushing = true;
+      const r = canvas.getBoundingClientRect();
+      scrubAt(e.clientX - r.left, e.clientY - r.top);
+    });
+    window.addEventListener('mouseup', () => isBrushing = false);
+    canvas.addEventListener('mousemove', (e) => {
+      if (!isBrushing) return;
+      const r = canvas.getBoundingClientRect();
+      scrubAt(e.clientX - r.left, e.clientY - r.top);
+    });
+
+    canvas.addEventListener('touchstart', (e) => {
+      isBrushing = true;
+      const r = canvas.getBoundingClientRect();
+      const t = e.touches[0];
+      scrubAt(t.clientX - r.left, t.clientY - r.top);
+    }, { passive: true });
+    canvas.addEventListener('touchmove', (e) => {
+      if (!isBrushing) return;
+      const r = canvas.getBoundingClientRect();
+      const t = e.touches[0];
+      scrubAt(t.clientX - r.left, t.clientY - r.top);
+    }, { passive: true });
+    canvas.addEventListener('touchend', () => isBrushing = false);
+
+    /* =====================================================
+       STAGE 2: LIVE X-RAY SCANNER LENS
+       ===================================================== */
+    const xrayBox = document.getElementById('xray-box');
+    const xrayUnderlay = document.getElementById('xray-underlay');
+    const xrayRing = document.getElementById('xray-ring');
+    let xrayScannedOnce = false;
+
+    function moveXrayLens(clientX, clientY) {
+      const rect = xrayBox.getBoundingClientRect();
+      const x = Math.max(40, Math.min(rect.width - 40, clientX - rect.left));
+      const y = Math.max(40, Math.min(rect.height - 40, clientY - rect.top));
+
+      xrayUnderlay.style.clipPath = `circle(92px at ${x}px ${y}px)`;
+      xrayRing.style.left = x + 'px';
+      xrayRing.style.top = y + 'px';
+
+      if (!xrayScannedOnce) {
+        xrayScannedOnce = true;
+        addMood(20);
+      }
+    }
+
+    xrayBox.addEventListener('mousemove', (e) => moveXrayLens(e.clientX, e.clientY));
+    xrayBox.addEventListener('touchmove', (e) => {
+      const t = e.touches[0];
+      moveXrayLens(t.clientX, t.clientY);
+    }, { passive: true });
+
+    /* =====================================================
+       STAGE 3: 100 UNIQUE APOLOGY WORDS & CAPSULES
+       ===================================================== */
+    const hundredWords = [
+      // 1-20: Deep Remorse & Emotion Vocabulary (Emotion)
+      { word: "Contrite", cat: "Emotion", msg: "Feeling deep, genuine remorse inside my chest because my careless words dimmed Dr. Chamanthi's precious smile." },
+      { word: "Remorseful", cat: "Emotion", msg: "Wishing with all my heart I could rewind the clock five minutes and hug you instead of speaking foolishly." },
+      { word: "Penitent", cat: "Emotion", msg: "Sitting humbly in your waiting room waiting for a chance to make you smile again." },
+      { word: "Sheepish", cat: "Emotion", msg: "Looking at my shoes with a silly, embarrassed face because I know you were 100% right." },
+      { word: "Chastened", cat: "Emotion", msg: "Today taught me that winning an argument means nothing if it makes Chamanthi sad." },
+      { word: "Crestfallen", cat: "Emotion", msg: "My whole mood dropped the exact second I realized my tone hurt your feelings." },
+      { word: "Humbled", cat: "Emotion", msg: "Throwing my stubborn pride straight into the clinic biohazard bin where it belongs!" },
+      { word: "Heartbroken", cat: "Emotion", msg: "Because even five minutes of Dr. Chamanthi being angry at me feels like five years." },
+      { word: "Mortified", cat: "Emotion", msg: "Appalled at my own lack of filter when talking to the sweetest girl in the world." },
+      { word: "Wistful", cat: "Emotion", msg: "Missing the effortless warmth and cute giggles we share when you aren't mad at me." },
+      { word: "Apologetic", cat: "Emotion", msg: "In every language, every code syntax, and every heartbeat: I am truly sorry." },
+      { word: "Regretful", cat: "Emotion", msg: "Replay-looping our conversation wishing I had chosen gentler, kinder words." },
+      { word: "Ashamed", cat: "Emotion", msg: "Because someone who heals people all day deserves only peace from me, never stress." },
+      { word: "Grieving", cat: "Emotion", msg: "Dramatically mourning the temporary pause of Dr. Chamanthi's gorgeous grin!" },
+      { word: "Pleading", cat: "Emotion", msg: "Sending puppy eyes across the screen hoping your soft heart melts a tiny bit." },
+      { word: "Repentant", cat: "Emotion", msg: "Ready to accept any penalty fine—from scolding to buying your favourite food!" },
+      { word: "Deflated", cat: "Emotion", msg: "Like a balloon with zero air until you talk to me normally again." },
+      { word: "Subdued", cat: "Emotion", msg: "All my chaotic energy is paused until my favourite dentist forgives me." },
+      { word: "Earnest", cat: "Emotion", msg: "Zero excuses, zero defensiveness—just pure sincerity asking for your forgiveness." },
+      { word: "Unfiltered-Fool", cat: "Emotion", msg: "The official clinical classification for a boy whose mouth moved faster than his brain!" },
+
+      // 21-40: Playful Dental Vocabulary (Dental)
+      { word: "Enamel-Cracked", cat: "Dental", msg: "My careless words were like biting down on an unexpected popcorn kernel—totally painful!" },
+      { word: "Suction-Needed", cat: "Dental", msg: "I wish I had a high-speed dental evacuator to vacuum my silly words right back out of the air." },
+      { word: "Lidocaine-Proof", cat: "Dental", msg: "Not even a double dose of local anaesthesia could numb how much I miss talking to you." },
+      { word: "Plaque-Guilt", cat: "Dental", msg: "Let's ultrasonic-scale away today's misunderstanding so it never builds up between us." },
+      { word: "Root-Canal-Ready", cat: "Dental", msg: "Ready to clean out 100% of my foolishness from the root and seal it with love." },
+      { word: "Pulpitis-Heart", cat: "Dental", msg: "My chest has acute irreversible ache whenever Dr. Chamanthi gives me the silent treatment!" },
+      { word: "Malocclusion", cat: "Dental", msg: "My brain and my tongue had a severe misalignment earlier—time for corrective braces!" },
+      { word: "Fluoride-Shield", cat: "Dental", msg: "From today, I'm coating all my sentences in extra gentleness to protect your smile." },
+      { word: "Dry-Socket-Sadness", cat: "Dental", msg: "Your anger hurts ten times worse than an unhealed wisdom tooth extraction!" },
+      { word: "Composite-Bond", cat: "Dental", msg: "Curing our bond with UV light so we come out even stronger after this silly fight." },
+      { word: "Gutta-Percha", cat: "Dental", msg: "Filling every empty space of today's argument with warmth, patience, and respect." },
+      { word: "Crown-Worthy", cat: "Dental", msg: "You deserve a solid gold crown for having the patience to deal with my occasional nonsense!" },
+      { word: "Prophylaxis", cat: "Dental", msg: "Polishing away my clumsy attitude until your radiant smile is 100% restored." },
+      { word: "Impression-Tray", cat: "Dental", msg: "You've left a permanent mould on my heart that nobody else could ever fit." },
+      { word: "Apex-Locator", cat: "Dental", msg: "My compass always points straight back to making Dr. Chamanthi happy." },
+      { word: "Bruxism-Brain", cat: "Dental", msg: "Grinding my gears wishing I had paused for three seconds before speaking!" },
+      { word: "Hyperdontia-Love", cat: "Dental", msg: "Having an extra-large, overflowing supply of adoration for my favourite doctor." },
+      { word: "Explorer-Probe", cat: "Dental", msg: "Search my whole heart with a dental mirror—you'll find zero bad intentions, only love!" },
+      { word: "Incisor-Sharp", cat: "Dental", msg: "My words came out sharp like a canine when they should have been soft like cotton rolls." },
+      { word: "Orthodontic-Fix", cat: "Dental", msg: "Putting permanent retainers on my tongue so it stays aligned with kindness!" },
+
+      // 41-60: Chamanthi Floral & Admiration Words (Floral)
+      { word: "Chrysanthemum", cat: "Floral", msg: "Your name means a golden blooming Chamanthi flower—meant to be cherished with sunlight!" },
+      { word: "Petal-Soft", cat: "Floral", msg: "That's how gently I should always handle your feelings every single day." },
+      { word: "Sunlit-Bloom", cat: "Floral", msg: "When Dr. Chamanthi smiles, the whole room brightens up like a festival morning." },
+      { word: "Irreplaceable", cat: "Floral", msg: "There are millions of people on earth, but only one Dr. Chamanthi who holds my heart." },
+      { word: "Radiant", cat: "Floral", msg: "Even in your clinic coat after a long shift, you outshine everyone effortlessly." },
+      { word: "Compassionate", cat: "Floral", msg: "You calm nervous patients with such grace; I always want to be your calm place too." },
+      { word: "Brilliant", cat: "Floral", msg: "I admire how hard you studied and worked to become the amazing doctor you are." },
+      { word: "Enchanting", cat: "Floral", msg: "The way your eyes sparkle when you laugh is my favourite sight in the world." },
+      { word: "Precious", cat: "Floral", msg: "Your peace of mind is worth a million times more than my silly ego." },
+      { word: "Graceful", cat: "Floral", msg: "You carry stress with so much dignity—I never want to add a single gram to it." },
+      { word: "Adorable-Angry", cat: "Floral", msg: "Even when you're scolding me or pouting, you're still the cutest human alive!" },
+      { word: "Golden-Hearted", cat: "Floral", msg: "Just like yellow Chamanthi petals, your heart is pure gold." },
+      { word: "Mesmerizing", cat: "Floral", msg: "One happy text from you can turn my entire terrible week into a celebration." },
+      { word: "Steady-Handed", cat: "Floral", msg: "You heal smiles with millimetre precision; teach me to guard your heart just as carefully!" },
+      { word: "Sunshine-Giver", cat: "Floral", msg: "My world feels cloudy and grey whenever Dr. Chamanthi is upset with me." },
+      { word: "Cherished", cat: "Floral", msg: "You are valued, respected, and adored more than my clumsy sentences ever showed." },
+      { word: "Angel-In-Scrubs", cat: "Floral", msg: "The official title for the cutest dentist who makes every patient feel safe." },
+      { word: "Blossom-Queen", cat: "Floral", msg: "Sending a virtual truckload of fresh Chamanthi garlands to your clinic door!" },
+      { word: "Soul-Medicine", cat: "Floral", msg: "Talking to you is the best therapy after a long day." },
+      { word: "Unmatched", cat: "Floral", msg: "No textbook smile could ever compete with Dr. Chamanthi's real laugh." },
+
+      // 61-80: Cute Bribes & Peace Offerings (Bribe)
+      { word: "Gelato-Bribe", cat: "Bribe", msg: "Redeemable for two scoops of your favourite ice cream flavour—zero questions asked!" },
+      { word: "Chai-Delivery", cat: "Bribe", msg: "Hot tea or coffee delivered straight to you whenever clinic hours exhaust you." },
+      { word: "Panipuri-Pact", cat: "Bribe", msg: "Unlimited crispy street-food session on me as soon as you forgive this dummy!" },
+      { word: "Chocolate-Rx", cat: "Bribe", msg: "Dentist-approved dark or milk chocolate stash waiting with your name on it." },
+      { word: "Scold-Coupon", cat: "Bribe", msg: "Grants Dr. Chamanthi 15 uninterrupted minutes to lecture me while I nod obediently." },
+      { word: "Playlist-Boss", cat: "Bribe", msg: "You get 100% dictatorship over the car/phone music queue for the next month!" },
+      { word: "Ear-Pull-Pass", cat: "Bribe", msg: "Official permission to pull my ears or pinch my cheek as punishment." },
+      { word: "Flower-Bouquet", cat: "Bribe", msg: "Fresh yellow and pink blooms to match the beauty of your name, Chamanthi." },
+      { word: "Biryani-Treat", cat: "Bribe", msg: "Because good food + sincere remorse is the ultimate healing combination!" },
+      { word: "Vent-Listener", cat: "Bribe", msg: "I will listen to all your clinic stories for hours with undivided attention." },
+      { word: "Dessert-First", cat: "Bribe", msg: "Waffles, brownies, or pastries—whatever makes Dr. Chamanthi grin fastest!" },
+      { word: "Auto-Win-Card", cat: "Bribe", msg: "You automatically win our next five disagreements before they even start." },
+      { word: "Shopping-Sherpa", cat: "Bribe", msg: "I will happily carry all your bags with zero dramatic sighs!" },
+      { word: "Movie-Choice", cat: "Bribe", msg: "You pick the movie, the snacks, and the time—I'm just happy to sit beside you." },
+      { word: "Coffee-Refill", cat: "Bribe", msg: "Your personal barista on standby whenever you have back-to-back patients." },
+      { word: "Silly-Jester", cat: "Bribe", msg: "Ready to crack terrible jokes until you accidentally snort-laugh at me!" },
+      { word: "Hand-Massage", cat: "Bribe", msg: "Because a dentist's tired hands deserve royal pampering after holding instruments all day." },
+      { word: "Late-Night-Drive", cat: "Bribe", msg: "Windows down, your favourite songs playing, and zero annoying words from me." },
+      { word: "Custom-Coder", cat: "Bribe", msg: "Building whole apps just to prove how much one smile from Chamanthi means to me!" },
+      { word: "VIP-Patient", cat: "Bribe", msg: "Paying my apology consultation fee in unlimited treats and lifelong devotion." },
+
+      // 81-100: Future Promises & Vows (Vow)
+      { word: "Pause-First", cat: "Vow", msg: "I promise to take a deep 3-second breath before speaking whenever emotions run high." },
+      { word: "Gentle-Tone", cat: "Vow", msg: "I promise to always speak to you with the softness and respect you deserve." },
+      { word: "Active-Ears", cat: "Vow", msg: "I promise to listen to understand your heart, never just to argue back." },
+      { word: "Zero-Ego", cat: "Vow", msg: "I promise that our happiness will always matter more to me than being right." },
+      { word: "Safe-Harbour", cat: "Vow", msg: "I promise to be your peaceful sanctuary after every exhausting day at the clinic." },
+      { word: "Quick-Repair", cat: "Vow", msg: "I promise to never let a silly misunderstanding linger overnight." },
+      { word: "Thoughtful", cat: "Vow", msg: "I promise to weigh my words like delicate dental instruments before using them." },
+      { word: "Protective", cat: "Vow", msg: "I promise to guard Dr. Chamanthi's smile like the rarest treasure on earth." },
+      { word: "Patient-Heart", cat: "Vow", msg: "I promise to wait patiently without rushing you if you still need a little time." },
+      { word: "Accountable", cat: "Vow", msg: "I promise to own my mistakes openly whenever I stumble." },
+      { word: "Supportive", cat: "Vow", msg: "I promise to always be the loudest cheerleader for all your dreams and clinic goals." },
+      { word: "Consistent", cat: "Vow", msg: "I promise to prove this apology through my daily actions, not just cute code." },
+      { word: "Understanding", cat: "Vow", msg: "I promise to always validate your feelings—because you had every right to be mad today." },
+      { word: "Kind-Worded", cat: "Vow", msg: "I promise to replace every sharp phrase with warmth and reassurance." },
+      { word: "Devoted", cat: "Vow", msg: "I promise that my loyalty and care for you are 100% permanent." },
+      { word: "Attentive", cat: "Vow", msg: "I promise to notice the little things that make your day lighter and happier." },
+      { word: "Grateful", cat: "Vow", msg: "I promise to never take a single moment of your time or affection for granted." },
+      { word: "Better-Every-Day", cat: "Vow", msg: "I promise to keep growing into someone who effortlessly makes you proud." },
+      { word: "Smile-Keeper", cat: "Vow", msg: "I promise my #1 life mission is keeping Dr. Chamanthi's smile bright." },
+      { word: "Forever-Yours", cat: "Vow", msg: "Word #100: Out of all 100 words, the truest one is that I adore you endlessly, Chamanthi! " }
+    ];
+
+    const unlockedSet = new Set([0]);
+    let currentFilter = 'all';
+
+    function renderWordCloud(filter = 'all', searchQuery = '') {
+      const container = document.getElementById('word-cloud');
+      container.innerHTML = '';
+
+      const catColors = {
+        Emotion: 'bg-pink-100 text-pink-800 border-pink-300 hover:bg-pink-500 hover:text-white',
+        Dental: 'bg-cyan-100 text-cyan-800 border-cyan-300 hover:bg-cyan-500 hover:text-white',
+        Floral: 'bg-amber-100 text-amber-900 border-amber-300 hover:bg-amber-500 hover:text-white',
+        Bribe: 'bg-purple-100 text-purple-800 border-purple-300 hover:bg-purple-500 hover:text-white',
+        Vow: 'bg-emerald-100 text-emerald-800 border-emerald-300 hover:bg-emerald-500 hover:text-white'
+      };
+
+      hundredWords.forEach((item, idx) => {
+        if (filter !== 'all' && item.cat !== filter) return;
+        if (searchQuery && !item.word.toLowerCase().includes(searchQuery.toLowerCase()) && !item.msg.toLowerCase().includes(searchQuery.toLowerCase())) return;
+
+        const btn = document.createElement('button');
+        const isRead = unlockedSet.has(idx);
+        btn.className = `px-3 py-1.5 rounded-full text-xs font-bold border transition transform hover:scale-105 flex items-center gap-1 ${catColors[item.cat]} ${isRead ? 'ring-2 ring-offset-1 ring-pink-400' : 'opacity-90'}`;
+        btn.innerHTML = `<span>#${idx + 1} ${item.word}</span> ${isRead ? '<span>✓</span>' : ''}`;
+        btn.onclick = () => selectWordCapsule(idx);
+        container.appendChild(btn);
+      });
+    }
+
+    function selectWordCapsule(idx) {
+      const item = hundredWords[idx];
+      unlockedSet.add(idx);
+      document.getElementById('unlocked-count').innerText = unlockedSet.size;
+      addMood(1);
+      playPopSound(520 + (idx % 12) * 35);
+
+      const card = document.getElementById('dispensed-card');
+      card.classList.remove('pill-drop');
+      void card.offsetWidth;
+      card.classList.add('pill-drop');
+
+      document.getElementById('pill-number').innerText = `💊 Capsule #${idx + 1} of 100`;
+      document.getElementById('pill-category').innerText = `✨ Category: ${item.cat}`;
+      document.getElementById('pill-word').innerText = `${idx + 1}. ${item.word}`;
+      document.getElementById('pill-meaning').innerText = item.msg;
+
+      renderWordCloud(currentFilter, document.getElementById('word-search').value);
+    }
+
+    function dispenseRandomWord() {
+      const globe = document.getElementById('capsule-globe');
+      globe.classList.remove('shake-anim');
+      void globe.offsetWidth;
+      globe.classList.add('shake-anim');
+
+      const randomIdx = Math.floor(Math.random() * hundredWords.length);
+      setTimeout(() => {
+        selectWordCapsule(randomIdx);
+        burstParticles(5);
+      }, 280);
+    }
+
+    function filterWordCloud(cat, btnEl) {
+      currentFilter = cat;
+      document.querySelectorAll('.cloud-filter').forEach(b => {
+        b.classList.remove('bg-pink-500', 'text-white');
+      });
+      btnEl.classList.add('bg-pink-500', 'text-white');
+      renderWordCloud(cat, document.getElementById('word-search').value);
+    }
+
+    function searchWords(val) {
+      renderWordCloud(currentFilter, val);
+    }
+
+    /* =====================================================
+       STAGE 4: CERTIFICATE, BRIBE SELECTOR & RUNAWAY BUTTON
+       ===================================================== */
+    let selectedFine = '🍦 Ice Cream Date';
+
+    function selectFine(btnEl, fineText) {
+      selectedFine = fineText;
+      playPopSound(640);
+      document.querySelectorAll('.fine-btn').forEach(b => {
+        b.className = "fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition";
+      });
+      btnEl.className = "fine-btn bg-pink-500 text-white py-2 px-3 rounded-xl transition shadow-md";
+      document.getElementById('chosen-fine-text').innerText = `Penalty: ${fineText}`;
+      document.getElementById('banner-fine').innerText = fineText;
+    }
+
+    function dodgeAngryButton(e) {
+      if (e) e.preventDefault();
+      playPopSound(340);
+      const btn = document.getElementById('runaway-btn');
+      const excuses = [
+        "Error 404: Anger Not Found ",
+        "Dental Council Forbids Frowning! ",
+        "Too Slow, Dr. Chamanthi! ",
+        "Click the Green Stamp Instead! 💮",
+        "Chamanthi Flowers Can't Stay Mad! "
+      ];
+      btn.innerText = excuses[Math.floor(Math.random() * excuses.length)];
+      const moveX = (Math.random() - 0.5) * 200;
+      const moveY = (Math.random() - 0.5) * 75;
+      btn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+    }
+
+    function stampForgiveness() {
+      addMood(100);
+      playSuccessMelody();
+      const stamp = document.getElementById('official-stamp');
+      stamp.classList.remove('hidden', 'stamp-active');
+      void stamp.offsetWidth;
+      stamp.classList.add('stamp-active');
+
+      document.getElementById('runaway-btn').style.display = 'none';
+      document.getElementById('final-banner').classList.remove('hidden');
+      burstParticles(28);
+    }
+
+    /* =====================================================
+       FLOATING CHAMANTHI FLOWERS & TEETH PARTICLES
+       ===================================================== */
+    const bgContainer = document.getElementById('particles-bg');
+    const particleIcons = ['🌼', '🦷', '💖', '✨', '🌸', '🩺'];
+
+    function spawnSingleFloater() {
+      const el = document.createElement('div');
+      el.className = 'floater';
+      el.innerText = particleIcons[Math.floor(Math.random() * particleIcons.length)];
+      el.style.left = Math.random() * 96 + 'vw';
+      el.style.fontSize = (18 + Math.random() * 18) + 'px';
+      const dur = 7 + Math.random() * 6;
+      el.style.animationDuration = dur + 's';
+      bgContainer.appendChild(el);
+      setTimeout(() => el.remove(), dur * 1000);
+    }
+
+    function burstParticles(count = 10) {
+      for (let i = 0; i < count; i++) {
+        setTimeout(spawnSingleFloater, i * 60);
+      }
+    }
+
+    setInterval(spawnSingleFloater, 1100);
+
+    // Initialize Everything on Window Load
+    window.onload = function () {
+      resizeScratchCanvas();
+      renderWordCloud('all');
+      window.addEventListener('resize', resizeScratchCanvas);
+    };
+  </script>
 </body>
 </html>
