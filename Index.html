@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
-  <title>Dr. Chamanthi's Interactive Smile & Apology Lab ❁✿❀❁✿❀</title>
+  <title>Dr. Chamanthi's Interactive Smile &amp; Apology Lab &#x1F33C;&#x1F9B7;&#x1F496;</title>
   <!-- Tailwind CSS -->
   <script src="https://cdn.tailwindcss.com"></script>
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Quicksand:wght@500;600;700&display=swap" rel="stylesheet">
+  <!-- Google Fonts + Noto Color Emoji Fallback for 100% Deployment Support -->
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Inter:wght@400;500;600;700&family=Noto+Color+Emoji&display=swap" rel="stylesheet">
   <style>
     :root {
       --pink: #ff4d79;
@@ -21,14 +22,18 @@
       user-select: none;
     }
     body {
-      font-family: 'Quicksand', sans-serif;
+      font-family: 'Inter', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
       background: radial-gradient(circle at top left, #fff0f5 0%, #e0f7fa 50%, #fffbeb 100%);
       color: var(--dark);
       overflow-x: hidden;
       min-height: 100vh;
     }
     h1, h2, h3, .font-display {
-      font-family: 'Fredoka', sans-serif;
+      font-family: 'Fredoka', 'Inter', Arial, 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+    }
+    .emoji {
+      font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
+      font-style: normal;
     }
 
     /* Floating Background Petals & Teeth */
@@ -36,6 +41,7 @@
       position: fixed;
       pointer-events: none;
       z-index: 0;
+      font-family: 'Apple Color Emoji', 'Segoe UI Emoji', 'Noto Color Emoji', sans-serif;
       animation: floatUp linear forwards;
     }
     @keyframes floatUp {
@@ -181,13 +187,13 @@
   <header class="sticky top-0 z-40 backdrop-blur-md bg-white/85 border-b-2 border-pink-200 shadow-sm">
     <div class="max-w-4xl mx-auto px-4 py-3 flex items-center justify-between gap-2">
       <div class="flex items-center gap-2.5">
-        <span class="text-3xl animate-bounce">.✦ ݁˖</span>
+        <span class="text-3xl animate-bounce emoji">&#x1F9B7;&#x1F33C;</span>
         <div>
           <h1 class="text-lg sm:text-xl font-bold text-pink-600 leading-tight">
             Dr. Chamanthi's Smile Lab
           </h1>
           <p class="text-xs text-slate-500 font-semibold">
-            Interactive Dental Apology Experience .✦ ݁˖
+            Interactive Dental Apology Experience &#x2728;
           </p>
         </div>
       </div>
@@ -204,7 +210,7 @@
         </div>
 
         <button id="sound-btn" onclick="toggleSound()" class="px-3 py-1.5 rounded-full bg-pink-100 hover:bg-pink-200 text-pink-700 text-xs font-bold flex items-center gap-1 transition shadow-sm">
-          <span id="sound-icon">🔊</span> <span class="hidden sm:inline">Sound ON</span>
+          <span id="sound-icon" class="emoji">&#x1F50A;</span> <span class="hidden sm:inline">Sound ON</span>
         </button>
       </div>
     </div>
@@ -217,36 +223,36 @@
     <section class="bg-gradient-to-r from-pink-500 via-rose-400 to-amber-400 rounded-3xl p-6 sm:p-8 text-white shadow-xl relative overflow-hidden">
       <div class="relative z-10 max-w-xl">
         <span class="inline-block px-3 py-1 rounded-full bg-white/25 backdrop-blur-sm text-xs font-bold uppercase tracking-wider mb-3">
-          Emergency Case #100 • VIP Doctor: Chamanthi
+          Emergency Case #100 &bull; VIP Doctor: Chamanthi &#x1FA7A;
         </span>
         <h2 class="text-2xl sm:text-4xl font-bold mb-2 leading-tight">
-          Paging Dr. Chamanthi! ✾⋆.˚
+          Paging Dr. Chamanthi! &#x1F33C;&#x1F496;
         </h2>
         <p class="text-sm sm:text-base text-white/95 font-medium leading-relaxed">
-          A simple text message wasn't special enough for the world's cutest dentist. So I built you an interactive **4-Stage Dental Apology Lab**! Complete the mini-checkups below to cure my foolishness.
+          A simple text message wasn't special enough for the world's cutest dentist. So I built you an interactive <strong>4-Stage Dental Apology Lab</strong>! Complete the mini-checkups below to cure my foolishness.
         </p>
       </div>
-      <div class="absolute -right-6 -bottom-6 text-8xl sm:text-9xl opacity-25 pointer-events-none">
-        ✾⋆.˚
+      <div class="absolute -right-6 -bottom-6 text-8xl sm:text-9xl opacity-25 pointer-events-none emoji">
+        &#x1F33C;
       </div>
     </section>
 
     <!-- Interactive Mode Navigation Pills -->
     <nav class="grid grid-cols-2 sm:grid-cols-4 gap-2.5">
       <button onclick="switchTab(1)" id="tab-btn-1" class="tab-pill bg-pink-500 text-white font-bold py-3 px-3 rounded-2xl shadow-md flex flex-col items-center gap-1 text-xs sm:text-sm transition transform hover:-translate-y-0.5">
-        <span class="text-xl">🪥</span>
+        <span class="text-xl emoji">&#x1FAA5;</span>
         <span>1. Brush Plaque</span>
       </button>
       <button onclick="switchTab(2)" id="tab-btn-2" class="tab-pill bg-white text-slate-700 hover:bg-pink-50 font-bold py-3 px-3 rounded-2xl shadow-sm border border-pink-100 flex flex-col items-center gap-1 text-xs sm:text-sm transition transform hover:-translate-y-0.5">
-        <span class="text-xl">🩻</span>
+        <span class="text-xl emoji">&#x1FA7A;</span>
         <span>2. X-Ray My Heart</span>
       </button>
       <button onclick="switchTab(3)" id="tab-btn-3" class="tab-pill bg-white text-slate-700 hover:bg-pink-50 font-bold py-3 px-3 rounded-2xl shadow-sm border border-pink-100 flex flex-col items-center gap-1 text-xs sm:text-sm transition transform hover:-translate-y-0.5">
-        <span class="text-xl">💊</span>
+        <span class="text-xl emoji">&#x1F48A;</span>
         <span>3. 100 Apology Pills</span>
       </button>
       <button onclick="switchTab(4)" id="tab-btn-4" class="tab-pill bg-white text-slate-700 hover:bg-pink-50 font-bold py-3 px-3 rounded-2xl shadow-sm border border-pink-100 flex flex-col items-center gap-1 text-xs sm:text-sm transition transform hover:-translate-y-0.5">
-        <span class="text-xl">📜</span>
+        <span class="text-xl emoji">&#x1F4DC;</span>
         <span>4. Forgive Seal</span>
       </button>
     </nav>
@@ -258,10 +264,10 @@
       <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-pink-500 bg-pink-50 px-3 py-1 rounded-full">
-            Stage 1 • Interactive Hygiene Game
+            Stage 1 &bull; Interactive Hygiene Game
           </span>
           <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">
-            🪥 Scrub Away My Careless Words!
+            &#x1FAA5; Scrub Away My Careless Words!
           </h3>
         </div>
         <div class="flex items-center gap-2">
@@ -269,28 +275,28 @@
             Cleaned: <span id="clean-pct">0%</span>
           </span>
           <button onclick="resetScratchCard()" class="text-xs font-bold bg-slate-100 hover:bg-slate-200 text-slate-600 px-3 py-1.5 rounded-full transition">
-            🔄 Reset Plaque
+            &#x1F504; Reset Plaque
           </button>
         </div>
       </div>
 
       <p class="text-sm text-slate-600 mb-5">
-        Dr. Chamanthi, my silly mouth left annoying "plaque" over your smile today. **Drag your finger or mouse across the card below** to scrub away my dumb words with minty toothpaste foam!
+        Dr. Chamanthi, my silly mouth left annoying "plaque" over your smile today. <strong>Drag your finger or mouse across the card below</strong> to scrub away my dumb words with minty toothpaste foam!
       </p>
 
       <!-- Scratch Off Container -->
       <div class="scratch-container" id="scratch-box">
         <!-- Secret Underneath Layer -->
         <div class="absolute inset-0 flex flex-col items-center justify-center p-6 text-center select-none z-0">
-          <div class="text-5xl sm:text-6xl mb-2 animate-bounce">ᨳଓ</div>
+          <div class="text-5xl sm:text-6xl mb-2 animate-bounce emoji">&#x1F9B7;&#x1F496;&#x1F33C;</div>
           <h4 class="text-xl sm:text-2xl font-bold text-pink-600 mb-2">
             Sparkling Clean! You Found My True Heart!
           </h4>
           <p class="text-sm sm:text-base text-slate-700 font-semibold max-w-md leading-relaxed">
-            "Dearest <span class="text-pink-600 font-bold">Dr. Chamanthi</span>, underneath my clumsy, unfiltered sentences is someone who adores you endlessly. Your smile is my favourite view in the world—I am so deeply sorry for making you angry! 💖"
+            "Dearest <span class="text-pink-600 font-bold">Dr. Chamanthi</span>, underneath my clumsy, unfiltered sentences is someone who adores you endlessly. Your smile is my favourite view in the world&mdash;I am so deeply sorry for making you angry! &#x1F496;"
           </p>
           <div class="mt-4 inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-amber-100 text-amber-800 text-xs font-bold">
-            🌼 100% Plaque-Free Love Restored!
+            &#x1F33C; 100% Plaque-Free Love Restored!
           </div>
         </div>
 
@@ -300,7 +306,7 @@
 
       <div class="mt-5 flex justify-center">
         <button onclick="switchTab(2)" class="bg-gradient-to-r from-cyan-500 to-blue-500 hover:from-cyan-600 hover:to-blue-600 text-white font-bold px-6 py-3 rounded-full shadow-lg text-sm flex items-center gap-2 transition transform hover:scale-105">
-          <span>Next: Perform Live X-Ray Scan</span> <span>🩻➡️</span>
+          <span>Next: Perform Live X-Ray Scan</span> <span class="emoji">&#x1FA7A;&#x27A1;&#xFE0F;</span>
         </button>
       </div>
     </section>
@@ -312,19 +318,19 @@
       <div class="flex flex-wrap items-center justify-between gap-2 mb-4">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-cyan-600 bg-cyan-50 px-3 py-1 rounded-full">
-            Stage 2 • Diagnostic Radiology
+            Stage 2 &bull; Diagnostic Radiology
           </span>
           <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">
-            🩻 Dr. Chamanthi's Live X-Ray Lens
+            &#x1FA7A; Dr. Chamanthi's Live X-Ray Lens
           </h3>
         </div>
         <span class="text-xs font-bold text-pink-600 bg-pink-50 px-3 py-1.5 rounded-full">
-          Drag the glowing blue lens around!
+          &#x1F50D; Drag the glowing blue lens around!
         </span>
       </div>
 
       <p class="text-sm text-slate-600 mb-5">
-        Move your finger or cursor across the patient below to inspect what is *actually* going on inside my brain, teeth, and heart since you got mad at me!
+        Move your finger or cursor across the patient below to inspect what is <em>actually</em> going on inside my brain, teeth, and heart since you got mad at me!
       </p>
 
       <!-- Interactive X-Ray Box -->
@@ -333,23 +339,23 @@
         <div class="absolute inset-0 flex flex-col items-center justify-between p-6 text-center bg-gradient-to-br from-rose-50 via-white to-amber-50">
           <div class="w-full flex justify-between items-center text-xs font-bold text-slate-400">
             <span>PATIENT ID: #FOOL-001</span>
-            <span>ATTENDING: DR. CHAMANTHI</span>
+            <span>ATTENDING: DR. CHAMANTHI &#x1F469;&#x200D;&#x2695;&#xFE0F;</span>
           </div>
 
           <div class="my-auto space-y-3">
-            <div class="text-6xl">𓇢𓆸𓇢𓆸</div>
+            <div class="text-6xl emoji">&#x1F97A;&#x1F33C;</div>
             <h4 class="text-lg sm:text-xl font-bold text-slate-800">
               Surface Appearance: "Trying to Act Normal"
             </h4>
             <p class="text-xs sm:text-sm text-slate-500 max-w-sm mx-auto">
-              Move the **X-Ray Scanner Circle** over my head, mouth, and chest to reveal the hidden clinical truth underneath!
+              Move the <strong>X-Ray Scanner Circle</strong> over my head, mouth, and chest to reveal the hidden clinical truth underneath!
             </p>
           </div>
 
           <div class="grid grid-cols-3 gap-2 w-full text-xs font-bold text-slate-600">
-            <div class="bg-white/90 p-2 rounded-xl border border-pink-100">ʚ⠀ິɞ Brain Zone</div>
-            <div class="bg-white/90 p-2 rounded-xl border border-pink-100">✌︎︎ Mouth Zone</div>
-            <div class="bg-white/90 p-2 rounded-xl border border-pink-100">⊹ ࣪ ﹏𓊝﹏𓂁﹏⊹ ࣪ ˖ Heart Zone</div>
+            <div class="bg-white/90 p-2 rounded-xl border border-pink-100">&#x1F9E0; Brain Zone</div>
+            <div class="bg-white/90 p-2 rounded-xl border border-pink-100">&#x1F9B7; Mouth Zone</div>
+            <div class="bg-white/90 p-2 rounded-xl border border-pink-100">&#x1F493; Heart Zone</div>
           </div>
         </div>
 
@@ -362,7 +368,7 @@
 
           <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 my-auto text-center">
             <div class="bg-slate-900/90 border border-cyan-500/50 p-3 rounded-2xl">
-              <div class="text-2xl mb-1">*ੈ𑁍༘⋆</div>
+              <div class="text-2xl mb-1 emoji">&#x1F9E0;&#x1F33C;</div>
               <div class="text-xs font-bold text-amber-300 uppercase">Cranial Scan</div>
               <p class="text-[11px] text-cyan-100 mt-1">
                 99.9% occupied by thoughts of Dr. Chamanthi. 0.1% regretting my dumb sentence!
@@ -370,7 +376,7 @@
             </div>
 
             <div class="bg-slate-900/90 border border-pink-500/50 p-3 rounded-2xl">
-              <div class="text-2xl mb-1">𑣲☕︎</div>
+              <div class="text-2xl mb-1 emoji">&#x1F9B7;&#x2728;</div>
               <div class="text-xs font-bold text-pink-400 uppercase">Wisdom Tooth X-Ray</div>
               <p class="text-[11px] text-cyan-100 mt-1">
                 Zero wisdom detected when I spoke earlier! Sweet tooth 100% addicted to your smile.
@@ -378,7 +384,7 @@
             </div>
 
             <div class="bg-slate-900/90 border border-rose-500/50 p-3 rounded-2xl">
-              <div class="text-2xl mb-1">˚.⋆꒰১ ໒꒱⋆.˚</div>
+              <div class="text-2xl mb-1 emoji">&#x1F497;&#x1FA79;</div>
               <div class="text-xs font-bold text-rose-400 uppercase">Cardiac Scan</div>
               <p class="text-[11px] text-cyan-100 mt-1">
                 Hairline fracture caused by your silence. Needs 1 immediate smile from Dr. Chamanthi!
@@ -387,21 +393,21 @@
           </div>
 
           <div class="text-center text-xs font-mono text-emerald-300 bg-emerald-950/60 py-1.5 rounded-lg border border-emerald-700/50">
-            ✅ RADIOLOGY VERDICT: Zero malice found—only a clumsy boy who adores you!
+            &#x2705; RADIOLOGY VERDICT: Zero malice found&mdash;only a clumsy boy who adores you!
           </div>
         </div>
 
         <!-- Visual Scanner Ring -->
         <div class="xray-ring" id="xray-ring">
           <span class="bg-cyan-500 text-slate-950 text-[10px] font-bold px-2 py-0.5 rounded-full uppercase tracking-wider shadow">
-            🩻 X-Ray Lens
+            &#x1F50D; X-Ray Lens
           </span>
         </div>
       </div>
 
       <div class="mt-5 flex justify-center">
         <button onclick="switchTab(3)" class="bg-gradient-to-r from-pink-500 to-rose-500 hover:from-pink-600 hover:to-rose-600 text-white font-bold px-6 py-3 rounded-full shadow-lg text-sm flex items-center gap-2 transition transform hover:scale-105">
-          <span>Next: Open 100 Apology Words Dispenser</span> <span>💊➡️</span>
+          <span>Next: Open 100 Apology Words Dispenser</span> <span class="emoji">&#x1F48A;&#x27A1;&#xFE0F;</span>
         </button>
       </div>
     </section>
@@ -413,10 +419,10 @@
       <div class="flex flex-wrap items-center justify-between gap-2 mb-3">
         <div>
           <span class="text-xs font-bold uppercase tracking-wider text-amber-600 bg-amber-50 px-3 py-1 rounded-full">
-            Stage 3 • Dental Pharmacy of 100 Words
+            Stage 3 &bull; Dental Pharmacy of 100 Words
           </span>
           <h3 class="text-xl sm:text-2xl font-bold text-slate-800 mt-1">
-            💊 100 Unique Words to Apologize (Zero Repeats!)
+            &#x1F48A; 100 Unique Words to Apologize (Zero Repeats!)
           </h3>
         </div>
         <div class="text-xs font-bold text-pink-600 bg-pink-50 px-3 py-1.5 rounded-full">
@@ -425,7 +431,7 @@
       </div>
 
       <p class="text-sm text-slate-600 mb-6">
-        You asked for **100 different words** instead of just repeating "sorry". Twist the **Dental Capsule Machine** below for a surprise apology word, or browse & tap all **100 unique apology word badges** in the interactive cloud!
+        You asked for <strong>100 different words</strong> instead of just repeating "sorry". Twist the <strong>Dental Capsule Machine</strong> below for a surprise apology word, or browse &amp; tap all <strong>100 unique apology word badges</strong> in the interactive cloud!
       </p>
 
       <!-- Capsule Dispenser & Active Prescription Display -->
@@ -440,14 +446,14 @@
             <span class="px-2 py-0.5 rounded-full bg-purple-400 text-white text-[10px] font-bold -rotate-12">Devoted</span>
             <span class="px-2 py-0.5 rounded-full bg-emerald-400 text-white text-[10px] font-bold">Penitent</span>
             <span class="px-2 py-0.5 rounded-full bg-rose-400 text-white text-[10px] font-bold rotate-3">Toothache</span>
-            <div class="text-3xl mt-1">𓊆ྀི❤︎𓊇ྀི</div>
+            <div class="text-3xl mt-1 emoji">&#x1F48A;&#x1F496;</div>
           </div>
           <div class="w-28 h-8 bg-pink-500 rounded-b-2xl -mt-2 shadow-md flex items-center justify-center text-white text-xs font-bold">
             RX DISPENSER
           </div>
 
           <button onclick="dispenseRandomWord()" class="mt-4 bg-gradient-to-r from-pink-500 via-rose-500 to-amber-500 hover:opacity-95 text-white font-bold px-5 py-2.5 rounded-full shadow-lg text-sm flex items-center gap-2 transition active:scale-95">
-            <span>𓂃 ོ☼𓂃 Dispense Surprise Word</span>
+            <span class="emoji">&#x1F3B2;</span> <span>Dispense Surprise Word</span>
           </button>
         </div>
 
@@ -456,10 +462,10 @@
           <div id="dispensed-card" class="bg-white rounded-2xl p-5 shadow-md border-2 border-pink-200 relative overflow-hidden">
             <div class="flex items-center justify-between gap-2 mb-2">
               <span id="pill-number" class="text-xs font-bold uppercase tracking-wider px-3 py-1 rounded-full bg-pink-100 text-pink-700">
-                💊 Capsule #1 of 100
+                &#x1F48A; Capsule #1 of 100
               </span>
               <span id="pill-category" class="text-xs font-bold text-cyan-600">
-                ✨ Heartfelt Vocabulary
+                &#x2728; Heartfelt Vocabulary
               </span>
             </div>
             <h4 id="pill-word" class="text-2xl sm:text-3xl font-bold text-pink-600 mb-2">
@@ -470,7 +476,7 @@
             </p>
             <div class="mt-4 pt-3 border-t border-slate-100 flex items-center justify-between text-xs text-slate-400">
               <span>Tap any of the 100 word pills below to inspect!</span>
-              <span>࣪☁︎ּ ֶָ֢. ˖</span>
+              <span class="emoji">&#x1F33C;&#x1F9B7;</span>
             </div>
           </div>
         </div>
@@ -479,15 +485,15 @@
       <!-- Search & Filter Bar for the 100 Unique Words -->
       <div class="flex flex-wrap items-center justify-between gap-3 mb-3">
         <div class="flex flex-wrap gap-1.5">
-          <button onclick="filterWordCloud('all', this)" class="cloud-filter bg-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-full transition">All 100 Words 🌟</button>
-          <button onclick="filterWordCloud('Emotion', this)" class="cloud-filter bg-pink-50 text-pink-700 hover:bg-pink-100 text-xs font-bold px-3 py-1.5 rounded-full transition">1-20: Deep Remorse 🥺</button>
-          <button onclick="filterWordCloud('Dental', this)" class="cloud-filter bg-cyan-50 text-cyan-700 hover:bg-cyan-100 text-xs font-bold px-3 py-1.5 rounded-full transition">21-40: Dental Terms 🦷</button>
-          <button onclick="filterWordCloud('Floral', this)" class="cloud-filter bg-amber-50 text-amber-800 hover:bg-amber-100 text-xs font-bold px-3 py-1.5 rounded-full transition">41-60: Chamanthi Praise 🌼</button>
-          <button onclick="filterWordCloud('Bribe', this)" class="cloud-filter bg-purple-50 text-purple-700 hover:bg-purple-100 text-xs font-bold px-3 py-1.5 rounded-full transition">61-80: Peace Treats 🍦</button>
-          <button onclick="filterWordCloud('Vow', this)" class="cloud-filter bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold px-3 py-1.5 rounded-full transition">81-100: Future Vows 🤞</button>
+          <button onclick="filterWordCloud('all', this)" class="cloud-filter bg-pink-500 text-white text-xs font-bold px-3 py-1.5 rounded-full transition">All 100 Words &#x1F31F;</button>
+          <button onclick="filterWordCloud('Emotion', this)" class="cloud-filter bg-pink-50 text-pink-700 hover:bg-pink-100 text-xs font-bold px-3 py-1.5 rounded-full transition">1-20: Deep Remorse &#x1F97A;</button>
+          <button onclick="filterWordCloud('Dental', this)" class="cloud-filter bg-cyan-50 text-cyan-700 hover:bg-cyan-100 text-xs font-bold px-3 py-1.5 rounded-full transition">21-40: Dental Terms &#x1F9B7;</button>
+          <button onclick="filterWordCloud('Floral', this)" class="cloud-filter bg-amber-50 text-amber-800 hover:bg-amber-100 text-xs font-bold px-3 py-1.5 rounded-full transition">41-60: Chamanthi Praise &#x1F33C;</button>
+          <button onclick="filterWordCloud('Bribe', this)" class="cloud-filter bg-purple-50 text-purple-700 hover:bg-purple-100 text-xs font-bold px-3 py-1.5 rounded-full transition">61-80: Peace Treats &#x1F366;</button>
+          <button onclick="filterWordCloud('Vow', this)" class="cloud-filter bg-emerald-50 text-emerald-700 hover:bg-emerald-100 text-xs font-bold px-3 py-1.5 rounded-full transition">81-100: Future Vows &#x1F91E;</button>
         </div>
 
-        <input type="text" id="word-search" oninput="searchWords(this.value)" placeholder="🔍 Search 100 words..." class="text-xs px-3.5 py-2 rounded-full border border-pink-200 focus:outline-none focus:border-pink-500 bg-white w-full sm:w-48" />
+        <input type="text" id="word-search" oninput="searchWords(this.value)" placeholder="&#x1F50D; Search 100 words..." class="text-xs px-3.5 py-2 rounded-full border border-pink-200 focus:outline-none focus:border-pink-500 bg-white w-full sm:w-48" />
       </div>
 
       <!-- Interactive 100-Word Tag Cloud -->
@@ -497,7 +503,7 @@
 
       <div class="mt-6 flex justify-center">
         <button onclick="switchTab(4)" class="bg-gradient-to-r from-amber-500 to-pink-500 hover:from-amber-600 hover:to-pink-600 text-white font-bold px-6 py-3 rounded-full shadow-lg text-sm flex items-center gap-2 transition transform hover:scale-105">
-          <span>Final Step: Official Dental Council Certificate</span> <span>📜➡️</span>
+          <span>Final Step: Official Dental Council Certificate</span> <span class="emoji">&#x1F4DC;&#x27A1;&#xFE0F;</span>
         </button>
       </div>
     </section>
@@ -508,13 +514,13 @@
     <section id="stage-4" class="stage-card hidden bg-white/95 backdrop-blur-md rounded-3xl p-5 sm:p-8 shadow-xl border-2 border-pink-300">
       <div class="text-center max-w-xl mx-auto mb-6">
         <span class="text-xs font-bold uppercase tracking-wider text-pink-600 bg-pink-50 px-3 py-1 rounded-full">
-          Stage 4 • Final Clinical Discharge
+          Stage 4 &bull; Final Clinical Discharge
         </span>
         <h3 class="text-2xl sm:text-3xl font-bold text-slate-800 mt-2">
-          📜 Official Dental Board Clearance
+          &#x1F4DC; Official Dental Board Clearance
         </h3>
         <p class="text-sm text-slate-600 mt-1">
-          Only **Dr. Chamanthi** has the authority to stamp this certificate and discharge this foolish patient from the doghouse!
+          Only <strong>Dr. Chamanthi</strong> has the authority to stamp this certificate and discharge this foolish patient from the doghouse!
         </p>
       </div>
 
@@ -522,7 +528,7 @@
       <div class="max-w-xl mx-auto bg-gradient-to-b from-amber-50/70 via-white to-rose-50/70 border-4 border-double border-amber-400 rounded-3xl p-6 sm:p-8 shadow-inner relative overflow-hidden">
         <div class="flex justify-between items-center border-b-2 border-amber-200 pb-3 mb-4">
           <div class="flex items-center gap-2">
-            <span class="text-2xl">𖡼𖤣𖥧𖡼𓋼𖤣𖥧𓋼𓍊</span>
+            <span class="text-2xl emoji">&#x1F33C;&#x1FA7A;</span>
             <div class="text-left">
               <div class="text-xs font-bold uppercase tracking-widest text-amber-800">Supreme Dental Council of Love</div>
               <div class="text-[11px] text-slate-500">Presiding Chief Officer: Dr. Chamanthi</div>
@@ -534,53 +540,56 @@
         </div>
 
         <p class="text-sm sm:text-base text-slate-700 leading-relaxed text-center italic mb-6">
-          "This document certifies that the patient has undergone thorough **Plaque Scrubbing**, **Heart X-Ray Inspection**, and **100 Unique Capsules of Remorse**. He solemnly swears to treat Dr. Chamanthi's heart with gentle precision and never utter careless words again."
+          "This document certifies that the patient has undergone thorough <strong>Plaque Scrubbing</strong>, <strong>Heart X-Ray Inspection</strong>, and <strong>100 Unique Capsules of Remorse</strong>. He solemnly swears to treat Dr. Chamanthi's heart with gentle precision and never utter careless words again."
         </p>
 
         <!-- Custom Bribe Selector for Her -->
         <div class="bg-white/90 rounded-2xl p-4 border border-pink-100 mb-6">
           <label class="block text-xs font-bold uppercase tracking-wider text-pink-600 mb-2 text-center">
-            🎁 Dr. Chamanthi, Select Your Mandatory Penalty Fine for Him:
+            &#x1F381; Dr. Chamanthi, Select Your Mandatory Penalty Fine for Him:
           </label>
           <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs font-bold">
-            <button onclick="selectFine(this, '⚘. Ice Cream Date')" class="fine-btn bg-pink-500 text-white py-2 px-3 rounded-xl transition">🍦 Ice Cream Date</button>
-            <button onclick="selectFine(this, '⚘. Fresh Chamanthi Flowers')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">🌼 Fresh Flowers</button>
-            <button onclick="selectFine(this, '⚘. Unlimited Chocolates')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">🍫 Chocolates</button>
-            <button onclick="selectFine(this, '⚘. Street Food / Panipuri')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">🥟 Panipuri Treat</button>
-            <button onclick="selectFine(this, '⚘. 10 Mins Free Scolding')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">👂 Free Scolding</button>
-            <button onclick="selectFine(this, '⚘. All of the Above!')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">💖 All of Above!</button>
+            <button onclick="selectFine(this, '\uD83C\uDF66 Ice Cream Date')" class="fine-btn bg-pink-500 text-white py-2 px-3 rounded-xl transition">&#x1F366; Ice Cream Date</button>
+            <button onclick="selectFine(this, '\uD83C\uDF3C Fresh Chamanthi Flowers')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">&#x1F33C; Fresh Flowers</button>
+            <button onclick="selectFine(this, '\uD83C\uDF6B Unlimited Chocolates')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">&#x1F36B; Chocolates</button>
+            <button onclick="selectFine(this, '\uD83E\uDD5F Street Food / Panipuri')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">&#x1F95F; Panipuri Treat</button>
+            <button onclick="selectFine(this, '\uD83D\uDC42 10 Mins Free Scolding')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">&#x1F442; Free Scolding</button>
+            <button onclick="selectFine(this, '\uD83D\uDC96 All of the Above!')" class="fine-btn bg-pink-50 text-slate-700 hover:bg-pink-100 py-2 px-3 rounded-xl transition">&#x1F496; All of Above!</button>
           </div>
         </div>
 
         <!-- Wax Stamp Overlay (Hidden until clicked) -->
         <div id="official-stamp" class="hidden my-4 mx-auto w-48 h-48 rounded-full border-4 border-dashed border-emerald-600 bg-emerald-50/95 flex flex-col items-center justify-center text-center p-4 shadow-xl">
-          <span class="text-3xl">·༻𐫱༺·</span>
+          <span class="text-3xl emoji">&#x1F4AE;&#x2705;</span>
           <span class="text-xs font-bold uppercase tracking-widest text-emerald-800 mt-1">Officially Forgiven</span>
           <span class="text-sm font-extrabold text-pink-600">BY DR. CHAMANTHI</span>
           <span id="chosen-fine-text" class="text-[11px] font-semibold text-emerald-700 mt-1 bg-white px-2 py-0.5 rounded-full">
-            Penalty: 🍦 Ice Cream Date
+            Penalty: &#x1F366; Ice Cream Date
           </span>
         </div>
 
         <!-- Interactive Action Buttons (Stamp vs Runaway Angry Button) -->
         <div class="relative min-h-[90px] flex flex-wrap items-center justify-center gap-4 mt-4">
           <button onclick="stampForgiveness()" class="bg-gradient-to-r from-emerald-500 to-teal-500 hover:from-emerald-600 hover:to-teal-600 text-white font-bold px-7 py-3.5 rounded-full shadow-xl text-sm sm:text-base flex items-center gap-2 transition transform hover:scale-105 z-10">
-            <span>💮 Stamp "Forgiven" Seal</span>
+            <span class="emoji">&#x1F4AE;</span> <span>Stamp "Forgiven" Seal</span>
           </button>
 
           <button id="runaway-btn" onmouseover="dodgeAngryButton()" ontouchstart="dodgeAngryButton(event)" onclick="dodgeAngryButton()" class="bg-slate-300 text-slate-700 font-bold px-5 py-3 rounded-full text-xs sm:text-sm transition-all duration-150">
-            Stay Angry 😠
+            Stay Angry &#x1F620;
           </button>
         </div>
 
         <!-- Final Celebration Banner -->
         <div id="final-banner" class="hidden mt-4 bg-gradient-to-r from-pink-500 to-amber-500 text-white p-4 rounded-2xl text-center shadow-lg">
           <p class="font-bold text-base sm:text-lg">
-            🎉 YAY! The World's Prettiest Dentist Smiled Again! .☘︎ ݁˖
+            &#x1F389; YAY! The World's Prettiest Dentist Smiled Again! &#x1F33C;&#x1F496;
           </p>
           <p class="text-xs sm:text-sm mt-1 opacity-95">
-            Screenshot this stamped certificate and send it to me to claim your <span id="banner-fine" class="underline font-bold">🍦 Ice Cream Date</span> immediately!
+            Screenshot this stamped certificate or click below to send your <span id="banner-fine" class="underline font-bold">&#x1F366; Ice Cream Date</span> penalty fine immediately!
           </p>
+          <a id="email-claim-link" href="mailto:surakota.vijaybabu@gmail.com?subject=Official%20Dental%20Forgiveness%20Seal%20-%20Dr.%20Chamanthi&body=I%20have%20officially%20stamped%20your%20forgiveness%20certificate!%20Mandatory%20Penalty%20Fine%3A%20Ice%20Cream%20Date" class="mt-3 inline-block bg-white text-pink-600 font-bold text-xs px-5 py-2.5 rounded-full shadow hover:bg-pink-50 transition">
+            &#x1F4E9; Send Penalty Fine to Email
+          </a>
         </div>
       </div>
     </section>
@@ -606,7 +615,7 @@
 
     function toggleSound() {
       soundEnabled = !soundEnabled;
-      document.getElementById('sound-icon').innerText = soundEnabled ? '🔊' : '🔇';
+      document.getElementById('sound-icon').innerText = soundEnabled ? '\uD83D\uDD0A' : '\uD83D\uDD07';
       if (soundEnabled) playPopSound(600);
     }
 
@@ -631,7 +640,7 @@
 
     function playSuccessMelody() {
       if (!soundEnabled) return;
-      const notes = [523.25, 659.25, 783.99, 1046.50]; // C5, E5, G5, C6
+      const notes = [523.25, 659.25, 783.99, 1046.50];
       notes.forEach((note, idx) => {
         setTimeout(() => playPopSound(note), idx * 110);
       });
@@ -678,7 +687,6 @@
       const h = canvas.height;
       ctx.globalCompositeOperation = 'source-over';
 
-      // Plaque Coating Background
       const grad = ctx.createLinearGradient(0, 0, w, h);
       grad.addColorStop(0, '#fde047');
       grad.addColorStop(0.5, '#fca5a5');
@@ -686,23 +694,26 @@
       ctx.fillStyle = grad;
       ctx.fillRect(0, 0, w, h);
 
-      // Cute Silly Plaque Blobs & Dumb Words
       const sillyBubbles = [
-        { x: w * 0.25, y: h * 0.26, text: "🦠 My Unfiltered Mouth" },
-        { x: w * 0.72, y: h * 0.24, text: "🦠 Speaking Without Thinking" },
-        { x: w * 0.50, y: h * 0.50, text: "🪥 SCRUB HERE WITH YOUR FINGER!" },
-        { x: w * 0.28, y: h * 0.76, text: "🦠 Clumsy Ego Plaque" },
-        { x: w * 0.73, y: h * 0.74, text: "🦠 Foot-In-Mouth Bacteria" }
+        { x: w * 0.25, y: h * 0.26, text: "\uD83E\uDDA0 My Unfiltered Mouth" },
+        { x: w * 0.72, y: h * 0.24, text: "\uD83E\uDDA0 Speaking Without Thinking" },
+        { x: w * 0.50, y: h * 0.50, text: "\uD83E\uDEA5 SCRUB HERE WITH YOUR FINGER!" },
+        { x: w * 0.28, y: h * 0.76, text: "\uD83E\uDDA0 Clumsy Ego Plaque" },
+        { x: w * 0.73, y: h * 0.74, text: "\uD83E\uDDA0 Foot-In-Mouth Bacteria" }
       ];
 
       sillyBubbles.forEach((b, idx) => {
-        ctx.fillStyle = idx === 2 ? '#be123c' : 'rgba(255, 255, 255, 0.88)';
+        ctx.fillStyle = idx === 2 ? '#be123c' : 'rgba(255, 255, 255, 0.9)';
         ctx.beginPath();
-        ctx.roundRect(b.x - 105, b.y - 20, 210, 40, 20);
+        if (ctx.roundRect) {
+          ctx.roundRect(b.x - 108, b.y - 20, 216, 40, 20);
+        } else {
+          ctx.rect(b.x - 108, b.y - 20, 216, 40);
+        }
         ctx.fill();
 
         ctx.fillStyle = idx === 2 ? '#ffffff' : '#881337';
-        ctx.font = 'bold 12px Quicksand, sans-serif';
+        ctx.font = 'bold 12px Inter, Arial, "Apple Color Emoji", "Segoe UI Emoji", "Noto Color Emoji", sans-serif';
         ctx.textAlign = 'center';
         ctx.textBaseline = 'middle';
         ctx.fillText(b.text, b.x, b.y);
@@ -772,7 +783,6 @@
       }
     }
 
-    // Mouse & Touch Events for Toothbrushing
     canvas.addEventListener('mousedown', (e) => {
       isBrushing = true;
       const r = canvas.getBoundingClientRect();
@@ -832,7 +842,6 @@
        STAGE 3: 100 UNIQUE APOLOGY WORDS & CAPSULES
        ===================================================== */
     const hundredWords = [
-      // 1-20: Deep Remorse & Emotion Vocabulary (Emotion)
       { word: "Contrite", cat: "Emotion", msg: "Feeling deep, genuine remorse inside my chest because my careless words dimmed Dr. Chamanthi's precious smile." },
       { word: "Remorseful", cat: "Emotion", msg: "Wishing with all my heart I could rewind the clock five minutes and hug you instead of speaking foolishly." },
       { word: "Penitent", cat: "Emotion", msg: "Sitting humbly in your waiting room waiting for a chance to make you smile again." },
@@ -848,20 +857,19 @@
       { word: "Ashamed", cat: "Emotion", msg: "Because someone who heals people all day deserves only peace from me, never stress." },
       { word: "Grieving", cat: "Emotion", msg: "Dramatically mourning the temporary pause of Dr. Chamanthi's gorgeous grin!" },
       { word: "Pleading", cat: "Emotion", msg: "Sending puppy eyes across the screen hoping your soft heart melts a tiny bit." },
-      { word: "Repentant", cat: "Emotion", msg: "Ready to accept any penalty fine—from scolding to buying your favourite food!" },
+      { word: "Repentant", cat: "Emotion", msg: "Ready to accept any penalty fine-from scolding to buying your favourite food!" },
       { word: "Deflated", cat: "Emotion", msg: "Like a balloon with zero air until you talk to me normally again." },
       { word: "Subdued", cat: "Emotion", msg: "All my chaotic energy is paused until my favourite dentist forgives me." },
-      { word: "Earnest", cat: "Emotion", msg: "Zero excuses, zero defensiveness—just pure sincerity asking for your forgiveness." },
+      { word: "Earnest", cat: "Emotion", msg: "Zero excuses, zero defensiveness-just pure sincerity asking for your forgiveness." },
       { word: "Unfiltered-Fool", cat: "Emotion", msg: "The official clinical classification for a boy whose mouth moved faster than his brain!" },
 
-      // 21-40: Playful Dental Vocabulary (Dental)
-      { word: "Enamel-Cracked", cat: "Dental", msg: "My careless words were like biting down on an unexpected popcorn kernel—totally painful!" },
+      { word: "Enamel-Cracked", cat: "Dental", msg: "My careless words were like biting down on an unexpected popcorn kernel-totally painful!" },
       { word: "Suction-Needed", cat: "Dental", msg: "I wish I had a high-speed dental evacuator to vacuum my silly words right back out of the air." },
       { word: "Lidocaine-Proof", cat: "Dental", msg: "Not even a double dose of local anaesthesia could numb how much I miss talking to you." },
       { word: "Plaque-Guilt", cat: "Dental", msg: "Let's ultrasonic-scale away today's misunderstanding so it never builds up between us." },
       { word: "Root-Canal-Ready", cat: "Dental", msg: "Ready to clean out 100% of my foolishness from the root and seal it with love." },
       { word: "Pulpitis-Heart", cat: "Dental", msg: "My chest has acute irreversible ache whenever Dr. Chamanthi gives me the silent treatment!" },
-      { word: "Malocclusion", cat: "Dental", msg: "My brain and my tongue had a severe misalignment earlier—time for corrective braces!" },
+      { word: "Malocclusion", cat: "Dental", msg: "My brain and my tongue had a severe misalignment earlier-time for corrective braces!" },
       { word: "Fluoride-Shield", cat: "Dental", msg: "From today, I'm coating all my sentences in extra gentleness to protect your smile." },
       { word: "Dry-Socket-Sadness", cat: "Dental", msg: "Your anger hurts ten times worse than an unhealed wisdom tooth extraction!" },
       { word: "Composite-Bond", cat: "Dental", msg: "Curing our bond with UV light so we come out even stronger after this silly fight." },
@@ -872,12 +880,11 @@
       { word: "Apex-Locator", cat: "Dental", msg: "My compass always points straight back to making Dr. Chamanthi happy." },
       { word: "Bruxism-Brain", cat: "Dental", msg: "Grinding my gears wishing I had paused for three seconds before speaking!" },
       { word: "Hyperdontia-Love", cat: "Dental", msg: "Having an extra-large, overflowing supply of adoration for my favourite doctor." },
-      { word: "Explorer-Probe", cat: "Dental", msg: "Search my whole heart with a dental mirror—you'll find zero bad intentions, only love!" },
+      { word: "Explorer-Probe", cat: "Dental", msg: "Search my whole heart with a dental mirror-you'll find zero bad intentions, only love!" },
       { word: "Incisor-Sharp", cat: "Dental", msg: "My words came out sharp like a canine when they should have been soft like cotton rolls." },
       { word: "Orthodontic-Fix", cat: "Dental", msg: "Putting permanent retainers on my tongue so it stays aligned with kindness!" },
 
-      // 41-60: Chamanthi Floral & Admiration Words (Floral)
-      { word: "Chrysanthemum", cat: "Floral", msg: "Your name means a golden blooming Chamanthi flower—meant to be cherished with sunlight!" },
+      { word: "Chrysanthemum", cat: "Floral", msg: "Your name means a golden blooming Chamanthi flower-meant to be cherished with sunlight!" },
       { word: "Petal-Soft", cat: "Floral", msg: "That's how gently I should always handle your feelings every single day." },
       { word: "Sunlit-Bloom", cat: "Floral", msg: "When Dr. Chamanthi smiles, the whole room brightens up like a festival morning." },
       { word: "Irreplaceable", cat: "Floral", msg: "There are millions of people on earth, but only one Dr. Chamanthi who holds my heart." },
@@ -886,7 +893,7 @@
       { word: "Brilliant", cat: "Floral", msg: "I admire how hard you studied and worked to become the amazing doctor you are." },
       { word: "Enchanting", cat: "Floral", msg: "The way your eyes sparkle when you laugh is my favourite sight in the world." },
       { word: "Precious", cat: "Floral", msg: "Your peace of mind is worth a million times more than my silly ego." },
-      { word: "Graceful", cat: "Floral", msg: "You carry stress with so much dignity—I never want to add a single gram to it." },
+      { word: "Graceful", cat: "Floral", msg: "You carry stress with so much dignity-I never want to add a single gram to it." },
       { word: "Adorable-Angry", cat: "Floral", msg: "Even when you're scolding me or pouting, you're still the cutest human alive!" },
       { word: "Golden-Hearted", cat: "Floral", msg: "Just like yellow Chamanthi petals, your heart is pure gold." },
       { word: "Mesmerizing", cat: "Floral", msg: "One happy text from you can turn my entire terrible week into a celebration." },
@@ -898,8 +905,7 @@
       { word: "Soul-Medicine", cat: "Floral", msg: "Talking to you is the best therapy after a long day." },
       { word: "Unmatched", cat: "Floral", msg: "No textbook smile could ever compete with Dr. Chamanthi's real laugh." },
 
-      // 61-80: Cute Bribes & Peace Offerings (Bribe)
-      { word: "Gelato-Bribe", cat: "Bribe", msg: "Redeemable for two scoops of your favourite ice cream flavour—zero questions asked!" },
+      { word: "Gelato-Bribe", cat: "Bribe", msg: "Redeemable for two scoops of your favourite ice cream flavour-zero questions asked!" },
       { word: "Chai-Delivery", cat: "Bribe", msg: "Hot tea or coffee delivered straight to you whenever clinic hours exhaust you." },
       { word: "Panipuri-Pact", cat: "Bribe", msg: "Unlimited crispy street-food session on me as soon as you forgive this dummy!" },
       { word: "Chocolate-Rx", cat: "Bribe", msg: "Dentist-approved dark or milk chocolate stash waiting with your name on it." },
@@ -909,10 +915,10 @@
       { word: "Flower-Bouquet", cat: "Bribe", msg: "Fresh yellow and pink blooms to match the beauty of your name, Chamanthi." },
       { word: "Biryani-Treat", cat: "Bribe", msg: "Because good food + sincere remorse is the ultimate healing combination!" },
       { word: "Vent-Listener", cat: "Bribe", msg: "I will listen to all your clinic stories for hours with undivided attention." },
-      { word: "Dessert-First", cat: "Bribe", msg: "Waffles, brownies, or pastries—whatever makes Dr. Chamanthi grin fastest!" },
+      { word: "Dessert-First", cat: "Bribe", msg: "Waffles, brownies, or pastries-whatever makes Dr. Chamanthi grin fastest!" },
       { word: "Auto-Win-Card", cat: "Bribe", msg: "You automatically win our next five disagreements before they even start." },
       { word: "Shopping-Sherpa", cat: "Bribe", msg: "I will happily carry all your bags with zero dramatic sighs!" },
-      { word: "Movie-Choice", cat: "Bribe", msg: "You pick the movie, the snacks, and the time—I'm just happy to sit beside you." },
+      { word: "Movie-Choice", cat: "Bribe", msg: "You pick the movie, the snacks, and the time-I'm just happy to sit beside you." },
       { word: "Coffee-Refill", cat: "Bribe", msg: "Your personal barista on standby whenever you have back-to-back patients." },
       { word: "Silly-Jester", cat: "Bribe", msg: "Ready to crack terrible jokes until you accidentally snort-laugh at me!" },
       { word: "Hand-Massage", cat: "Bribe", msg: "Because a dentist's tired hands deserve royal pampering after holding instruments all day." },
@@ -920,7 +926,6 @@
       { word: "Custom-Coder", cat: "Bribe", msg: "Building whole apps just to prove how much one smile from Chamanthi means to me!" },
       { word: "VIP-Patient", cat: "Bribe", msg: "Paying my apology consultation fee in unlimited treats and lifelong devotion." },
 
-      // 81-100: Future Promises & Vows (Vow)
       { word: "Pause-First", cat: "Vow", msg: "I promise to take a deep 3-second breath before speaking whenever emotions run high." },
       { word: "Gentle-Tone", cat: "Vow", msg: "I promise to always speak to you with the softness and respect you deserve." },
       { word: "Active-Ears", cat: "Vow", msg: "I promise to listen to understand your heart, never just to argue back." },
@@ -933,14 +938,14 @@
       { word: "Accountable", cat: "Vow", msg: "I promise to own my mistakes openly whenever I stumble." },
       { word: "Supportive", cat: "Vow", msg: "I promise to always be the loudest cheerleader for all your dreams and clinic goals." },
       { word: "Consistent", cat: "Vow", msg: "I promise to prove this apology through my daily actions, not just cute code." },
-      { word: "Understanding", cat: "Vow", msg: "I promise to always validate your feelings—because you had every right to be mad today." },
+      { word: "Understanding", cat: "Vow", msg: "I promise to always validate your feelings-because you had every right to be mad today." },
       { word: "Kind-Worded", cat: "Vow", msg: "I promise to replace every sharp phrase with warmth and reassurance." },
       { word: "Devoted", cat: "Vow", msg: "I promise that my loyalty and care for you are 100% permanent." },
       { word: "Attentive", cat: "Vow", msg: "I promise to notice the little things that make your day lighter and happier." },
       { word: "Grateful", cat: "Vow", msg: "I promise to never take a single moment of your time or affection for granted." },
       { word: "Better-Every-Day", cat: "Vow", msg: "I promise to keep growing into someone who effortlessly makes you proud." },
       { word: "Smile-Keeper", cat: "Vow", msg: "I promise my #1 life mission is keeping Dr. Chamanthi's smile bright." },
-      { word: "Forever-Yours", cat: "Vow", msg: "Word #100: Out of all 100 words, the truest one is that I adore you endlessly, Chamanthi! " }
+      { word: "Forever-Yours", cat: "Vow", msg: "Word #100: Out of all 100 words, the truest one is that I adore you endlessly, Chamanthi! \uD83D\uDC96" }
     ];
 
     const unlockedSet = new Set([0]);
@@ -965,7 +970,7 @@
         const btn = document.createElement('button');
         const isRead = unlockedSet.has(idx);
         btn.className = `px-3 py-1.5 rounded-full text-xs font-bold border transition transform hover:scale-105 flex items-center gap-1 ${catColors[item.cat]} ${isRead ? 'ring-2 ring-offset-1 ring-pink-400' : 'opacity-90'}`;
-        btn.innerHTML = `<span>#${idx + 1} ${item.word}</span> ${isRead ? '<span>✓</span>' : ''}`;
+        btn.innerHTML = `<span>#${idx + 1} ${item.word}</span> ${isRead ? '<span>&#10003;</span>' : ''}`;
         btn.onclick = () => selectWordCapsule(idx);
         container.appendChild(btn);
       });
@@ -983,8 +988,8 @@
       void card.offsetWidth;
       card.classList.add('pill-drop');
 
-      document.getElementById('pill-number').innerText = `💊 Capsule #${idx + 1} of 100`;
-      document.getElementById('pill-category').innerText = `✨ Category: ${item.cat}`;
+      document.getElementById('pill-number').innerText = `\uD83D\uDC8A Capsule #${idx + 1} of 100`;
+      document.getElementById('pill-category').innerText = `\u2728 Category: ${item.cat}`;
       document.getElementById('pill-word').innerText = `${idx + 1}. ${item.word}`;
       document.getElementById('pill-meaning').innerText = item.msg;
 
@@ -1020,7 +1025,7 @@
     /* =====================================================
        STAGE 4: CERTIFICATE, BRIBE SELECTOR & RUNAWAY BUTTON
        ===================================================== */
-    let selectedFine = '🍦 Ice Cream Date';
+    let selectedFine = '\uD83C\uDF66 Ice Cream Date';
 
     function selectFine(btnEl, fineText) {
       selectedFine = fineText;
@@ -1031,6 +1036,13 @@
       btnEl.className = "fine-btn bg-pink-500 text-white py-2 px-3 rounded-xl transition shadow-md";
       document.getElementById('chosen-fine-text').innerText = `Penalty: ${fineText}`;
       document.getElementById('banner-fine').innerText = fineText;
+
+      const emailLink = document.getElementById('email-claim-link');
+      if (emailLink) {
+        const subject = encodeURIComponent("Official Dental Forgiveness Seal - Dr. Chamanthi");
+        const body = encodeURIComponent(`I have officially stamped your forgiveness certificate! Mandatory Penalty Fine: ${fineText}`);
+        emailLink.href = `mailto:surakota.vijaybabu@gmail.com?subject=${subject}&body=${body}`;
+      }
     }
 
     function dodgeAngryButton(e) {
@@ -1038,11 +1050,11 @@
       playPopSound(340);
       const btn = document.getElementById('runaway-btn');
       const excuses = [
-        "Error 404: Anger Not Found ",
-        "Dental Council Forbids Frowning! ",
-        "Too Slow, Dr. Chamanthi! ",
-        "Click the Green Stamp Instead! 💮",
-        "Chamanthi Flowers Can't Stay Mad! "
+        "Error 404: Anger Not Found \uD83D\uDE1C",
+        "Dental Council Forbids Frowning! \uD83E\uDDB7",
+        "Too Slow, Dr. Chamanthi! \uD83C\uDFC3\u200D\u2642\uFE0F",
+        "Click the Green Stamp Instead! \uD83D\uDCAE",
+        "Chamanthi Flowers Can't Stay Mad! \uD83C\uDF3C"
       ];
       btn.innerText = excuses[Math.floor(Math.random() * excuses.length)];
       const moveX = (Math.random() - 0.5) * 200;
@@ -1065,9 +1077,17 @@
 
     /* =====================================================
        FLOATING CHAMANTHI FLOWERS & TEETH PARTICLES
+       (Encoded in JS Unicode Escapes so hosting never breaks them)
        ===================================================== */
     const bgContainer = document.getElementById('particles-bg');
-    const particleIcons = ['🌼', '🦷', '💖', '✨', '🌸', '🩺'];
+    const particleIcons = [
+      '\uD83C\uDF3C', // 🌼 Blossom
+      '\uD83E\uDDB7', // 🦷 Tooth
+      '\uD83D\uDC96', // 💖 Sparkling Heart
+      '\u2728',       // ✨ Sparkles
+      '\uD83C\uDF38', // 🌸 Cherry Blossom
+      '\uD83E\uDE7A'  // 🩺 Stethoscope
+    ];
 
     function spawnSingleFloater() {
       const el = document.createElement('div');
@@ -1089,7 +1109,6 @@
 
     setInterval(spawnSingleFloater, 1100);
 
-    // Initialize Everything on Window Load
     window.onload = function () {
       resizeScratchCanvas();
       renderWordCloud('all');
